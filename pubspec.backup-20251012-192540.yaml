@@ -1,0 +1,87 @@
+name: depenses_app
+description: Application de gestion des dépenses pour Ambulance Saint-Jean Québec
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.2.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # --- Outils et packages essentiels ---
+  cupertino_icons: ^1.0.8
+  intl: ^0.19.0
+  flutter_localizations:
+    sdk: flutter
+  flutter_secure_storage: ^9.0.0
+  provider: ^6.1.2
+  http: ^1.2.2
+  shared_preferences: ^2.2.2
+  url_launcher: ^6.3.0
+  path_provider: ^2.1.4
+  image_picker: ^1.1.2
+  file_picker: ^8.1.2
+  uuid: ^4.5.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+  # --- Optionnels (icône + splash screen) ---
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.4.1
+
+# --- Configuration L10N (localisation multilingue) ---
+flutter:
+  generate: true
+  uses-material-design: true
+
+  gen_l10n:
+    arb-dir: lib/l10n
+    template-arb-file: app_en.arb
+    output-localization-file: s.dart
+    output-class: S
+    synthetic-package: false
+    nullable-getter: false
+    preferred-supported-locales:
+      - fr
+      - en
+
+  # --- Optionnel : typographie uniforme cross-platform ---
+  # fonts:
+  #   - family: Inter
+  #     fonts:
+  #       - asset: assets/fonts/Inter-VariableFont.ttf
+  #         weight: 100
+  #         style: normal
+  #       - asset: assets/fonts/Inter-Italic-VariableFont.ttf
+  #         weight: 100
+  #         style: italic
+
+  # --- Tes assets (si présents) ---
+  # assets:
+  #   - assets/icon/
+  #   - assets/splash/
+  #   - assets/images/
+
+# --- Config pour l’icône de l’app ---
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: assets/icon/icon.png
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: assets/icon/icon-foreground.png
+
+# --- Config pour l’écran de démarrage ---
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: assets/splash/splash.png
+  android: true
+  ios: true
+  web: true
+  android_12:
+    color: "#FFFFFF"
+    image: assets/splash/splash-android12.png
