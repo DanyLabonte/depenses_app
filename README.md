@@ -14,3 +14,5 @@ Ajouts:
 ## Destinataire de paiement (N2)
 - UI: liste déroulante (ex. *Comptes payables*, *Finance centrale*) **ou** champ email.
 - Backend: POST `/payments/dispatch` avec `{ expenseId, recipientType: 'group'|'email', recipient, payload }`.
+
+✅ Test de commit depuis Android Studio
