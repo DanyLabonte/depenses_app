@@ -128,7 +128,7 @@ class SEn extends S {
 
   @override
   String get forgotPasswordSubtitle =>
-      'Enter your email and we’ll send you a link to reset your password.';
+      'Enter your email and weÃ¢â‚¬â„¢ll send you a link to reset your password.';
 
   @override
   String get emailLabel => 'Email';
@@ -166,7 +166,7 @@ class SEn extends S {
   String get accountSelectTitle => 'Select account category';
 
   @override
-  String get searchHint => 'Search code or label…';
+  String get searchHint => 'Search code or labelÃ¢â‚¬Â¦';
 
   @override
   String get acc66100 => '66100 | Divisional meeting';
@@ -233,7 +233,7 @@ class SEn extends S {
 
   @override
   String get roleApprovalNote =>
-      'An administrator’s approval is required for this role.';
+      'An administratorÃ¢â‚¬â„¢s approval is required for this role.';
 
   @override
   String get agreeTerms => 'I agree to the terms';

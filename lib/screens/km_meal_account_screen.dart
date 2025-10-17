@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
 /// ==========================
-/// Réglages / Politiques SAC
+/// R?glages / Politiques SAC
 /// ==========================
-/// — Montant remboursé par KM (ajuste si besoin)
+/// - Montant rembours? par KM (ajuste si besoin)
 const double kKmRate = 0.58; // $/km
-/// — Règles repas (exemples — ajuste si besoin)
+/// - R?gles repas (exemples - ajuste si besoin)
 const int kMinHoursForLunch = 4;
 const int kMinHoursForDinner = 10;
-const int kBreakfastThresholdHour = 7; // départ avant 07:00 => déjeuner éligible
+const int kBreakfastThresholdHour = 7; // d?part avant 07:00 => d?jeuner ?ligible
 
-/// — Barèmes forfaitaires repas (par repas)
+/// - Bar?mes forfaitaires repas (par repas)
 const double kBreakfastPerDiem = 10.0;
 const double kLunchPerDiem = 15.0;
 const double kDinnerPerDiem = 25.0;
 
 /// ==========================
-/// Modèles retournés
+/// Mod?les retourn?s
 /// ==========================
 class KmDetail {
   final double distanceEnteredKm;
@@ -86,7 +86,7 @@ class KmMealResult {
 }
 
 /// ==========================
-/// Écran KM & Repas
+/// ?cran KM & Repas
 /// ==========================
 class KmMealAccountScreen extends StatefulWidget {
   /// 0 = KM, 1 = Repas
@@ -104,7 +104,7 @@ class _KmMealAccountScreenState extends State<KmMealAccountScreen>
   // KM
   final _distanceCtrl = TextEditingController();
   bool _isHomeCommute = false; // Trajet domicile-travail (exclu)
-  bool _isCoveredByOrg = false; // KM couverts par l’organisation (exclu)
+  bool _isCoveredByOrg = false; // KM couverts par lÃ¢â‚¬â„¢organisation (exclu)
 
   // Repas
   TimeOfDay _start = const TimeOfDay(hour: 8, minute: 0);
@@ -128,9 +128,9 @@ class _KmMealAccountScreenState extends State<KmMealAccountScreen>
     super.dispose();
   }
 
-  // ────────────────────────────────────────────────────────────────────────────
+  // ????????????????????????????????????????????????????????????????????????????
   // Calculs
-  // ────────────────────────────────────────────────────────────────────────────
+  // ????????????????????????????????????????????????????????????????????????????
 
   Future<void> _pickTime({required bool start}) async {
     final initial = start ? _start : _end;
@@ -195,12 +195,12 @@ class _KmMealAccountScreenState extends State<KmMealAccountScreen>
     final meals = _computeMeals();
     final bool isKmTab = _tab.index == 0;
 
-    // total et compte suggéré basés UNIQUEMENT sur l’onglet actif
+    // total et compte sugg?r? bas?s UNIQUEMENT sur lÃ¢â‚¬â„¢onglet actif
     final double total = isKmTab ? km.kmAmount : meals.totalMeals;
     final String? account =
     isKmTab ? (km.kmAmount > 0 ? '77100' : null) : (meals.totalMeals > 0 ? '77102' : null);
 
-    // On remet à zéro la partie non utilisée pour éviter toute confusion
+    // On remet ? z?ro la partie non utilis?e pour ?viter toute confusion
     final KmDetail kmForReturn = isKmTab
         ? km
         : KmDetail(
@@ -237,9 +237,9 @@ class _KmMealAccountScreenState extends State<KmMealAccountScreen>
     );
   }
 
-  // ────────────────────────────────────────────────────────────────────────────
+  // ????????????????????????????????????????????????????????????????????????????
   // UI
-  // ────────────────────────────────────────────────────────────────────────────
+  // ????????????????????????????????????????????????????????????????????????????
 
   @override
   Widget build(BuildContext context) {
@@ -266,7 +266,7 @@ class _KmMealAccountScreenState extends State<KmMealAccountScreen>
     );
   }
 
-  /// Barre du bas — n’affiche QUE les infos de l’onglet actif
+  /// Barre du bas - nÃ¢â‚¬â„¢affiche QUE les infos de lÃ¢â‚¬â„¢onglet actif
   Widget _buildBottom(ThemeData theme) {
     final isKmTab = _tab.index == 0;
     final km = _computeKm();
@@ -277,7 +277,7 @@ class _KmMealAccountScreenState extends State<KmMealAccountScreen>
       chips.addAll([
         _chip(
           label:
-          'KM: ${km.eligibleKm.toStringAsFixed(2)} × ${km.kmRate.toStringAsFixed(2)} = ${km.kmAmount.toStringAsFixed(2)}',
+          'KM: ${km.eligibleKm.toStringAsFixed(2)} ? ${km.kmRate.toStringAsFixed(2)} = ${km.kmAmount.toStringAsFixed(2)}',
           icon: Icons.directions_car_filled_rounded,
         ),
         if (km.excludedHomeCommute)
@@ -351,7 +351,7 @@ class _KmMealAccountScreenState extends State<KmMealAccountScreen>
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        Text('Kilométrage', style: theme.textTheme.titleMedium),
+        Text('Kilom?trage', style: theme.textTheme.titleMedium),
         const SizedBox(height: 12),
         TextFormField(
           controller: _distanceCtrl,
@@ -359,25 +359,25 @@ class _KmMealAccountScreenState extends State<KmMealAccountScreen>
           decoration: const InputDecoration(
             labelText: 'Distance (km)',
             prefixIcon: Icon(Icons.route),
-            helperText: 'Saisir la distance parcourue en kilomètres',
+            helperText: 'Saisir la distance parcourue en kilom?tres',
           ),
         ),
         const SizedBox(height: 8),
         SwitchListTile(
           value: _isHomeCommute,
           onChanged: (v) => setState(() => _isHomeCommute = v),
-          title: const Text('Trajet domicile ↔ lieu habituel (exclu)'),
+          title: const Text('Trajet domicile ? lieu habituel (exclu)'),
           subtitle: const Text('Non remboursable selon la politique'),
         ),
         SwitchListTile(
           value: _isCoveredByOrg,
           onChanged: (v) => setState(() => _isCoveredByOrg = v),
-          title: const Text('KM couverts par l’organisation (exclu)'),
-          subtitle: const Text('Ex.: véhicule fourni, réclamé par ailleurs'),
+          title: const Text('KM couverts par lÃ¢â‚¬â„¢organisation (exclu)'),
+          subtitle: const Text('Ex.: v?hicule fourni, r?clam? par ailleurs'),
         ),
         const SizedBox(height: 12),
         _summaryTile(
-          title: 'Éligible: ${km.eligibleKm.toStringAsFixed(2)} km × ${km.kmRate.toStringAsFixed(2)}',
+          title: '?ligible: ${km.eligibleKm.toStringAsFixed(2)} km ? ${km.kmRate.toStringAsFixed(2)}',
           value: '${km.kmAmount.toStringAsFixed(2)} \$',
           icon: Icons.directions_car_filled_rounded,
         ),
@@ -403,7 +403,7 @@ class _KmMealAccountScreenState extends State<KmMealAccountScreen>
               child: ListTile(
                 contentPadding: EdgeInsets.zero,
                 leading: const Icon(Icons.play_circle_outline),
-                title: Text('Départ: ${_start.format(context)}'),
+                title: Text('D?part: ${_start.format(context)}'),
                 onTap: () => _pickTime(start: true),
               ),
             ),
@@ -418,7 +418,7 @@ class _KmMealAccountScreenState extends State<KmMealAccountScreen>
             ),
           ],
         ),
-        Text('Durée: $durationHours h'),
+        Text('Dur?e: $durationHours h'),
         const SizedBox(height: 8),
         SwitchListTile(
           value: _mealsProvided,
@@ -429,7 +429,7 @@ class _KmMealAccountScreenState extends State<KmMealAccountScreen>
         const Divider(height: 24),
 
         _mealRow(
-          title: 'Déjeuner',
+          title: 'D?jeuner',
           eligible: eligibleB,
           qty: _bQty,
           onChanged: (v) => setState(() => _bQty = v),
@@ -438,7 +438,7 @@ class _KmMealAccountScreenState extends State<KmMealAccountScreen>
         const SizedBox(height: 8),
 
         _mealRow(
-          title: 'Dîner',
+          title: 'D?ner',
           eligible: eligibleL,
           qty: _lQty,
           onChanged: (v) => setState(() => _lQty = v),
@@ -456,7 +456,7 @@ class _KmMealAccountScreenState extends State<KmMealAccountScreen>
         const SizedBox(height: 16),
 
         _summaryTile(
-          title: 'Total repas éligible',
+          title: 'Total repas ?ligible',
           value: '${meals.totalMeals.toStringAsFixed(2)} \$.',
           icon: Icons.restaurant_rounded,
         ),
@@ -473,7 +473,7 @@ class _KmMealAccountScreenState extends State<KmMealAccountScreen>
   }) {
     final disabled = _mealsProvided || !eligible;
     final color = disabled ? Colors.orange : Colors.green;
-    final label = _mealsProvided ? 'fourni (exclu)' : (eligible ? 'éligible' : 'non éligible');
+    final label = _mealsProvided ? 'fourni (exclu)' : (eligible ? '?ligible' : 'non ?ligible');
 
     return Row(
       children: [
@@ -481,7 +481,7 @@ class _KmMealAccountScreenState extends State<KmMealAccountScreen>
           child: ListTile(
             contentPadding: EdgeInsets.zero,
             title: Text(title),
-            subtitle: Text('$label • ${rate.toStringAsFixed(2)} \$'),
+            subtitle: Text('$label . ${rate.toStringAsFixed(2)} \$'),
             leading: Icon(eligible ? Icons.check_circle : Icons.block, color: color),
           ),
         ),
@@ -517,3 +517,5 @@ class _KmMealAccountScreenState extends State<KmMealAccountScreen>
     );
   }
 }
+
+

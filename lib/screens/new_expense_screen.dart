@@ -1,5 +1,6 @@
+import 'package:depenses_app/core/l10n/gen/s.dart';
 import 'package:flutter/material.dart';
-import 'package:depenses_app/l10n/s.dart';
+import 'package:depenses_app/core/l10n/gen/s.dart';
 import 'package:depenses_app/screens/expense_form_screen.dart';
 
 class NewExpenseScreen extends StatelessWidget {
@@ -15,3 +16,5 @@ class NewExpenseScreen extends StatelessWidget {
     );
   }
 }
+
+

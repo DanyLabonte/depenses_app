@@ -1,5 +1,6 @@
+import 'package:depenses_app/core/l10n/gen/s.dart';
 import 'package:flutter/material.dart';
-import 'package:depenses_app/l10n/s.dart';
+import 'package:depenses_app/core/l10n/gen/s.dart';
 
 class FeedbackScreen extends StatefulWidget {
   final String currentUserEmail;
@@ -81,7 +82,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
           const SizedBox(height: 10),
           Center(
             child: Text(
-              '${s.feedbackFooter} — ${widget.currentUserEmail}',
+              '${s.feedbackFooter} Ã¢â‚¬â€ ${widget.currentUserEmail}',
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
@@ -120,3 +121,5 @@ class _Line extends StatelessWidget {
     );
   }
 }
+
+

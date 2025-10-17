@@ -1,7 +1,36 @@
+import 'package:depenses_app/core/l10n/gen/s.dart';
+import '../widgets/role_dropdown.dart';
+import '../services/role_store.dart';
+import '../widgets/role_dropdown.dart';
+import '../models/user_roles.dart';
+import '../widgets/role_dropdown.dart';
+import '../services/role_store.dart';
+import '../widgets/role_dropdown.dart';
 import 'package:flutter/material.dart';
-import 'package:depenses_app/l10n/s.dart';
+import '../widgets/role_dropdown.dart';
+import '../services/role_store.dart';
+import '../widgets/role_dropdown.dart';
+import '../models/user_roles.dart';
+import '../widgets/role_dropdown.dart';
+import '../services/role_store.dart';
+import '../widgets/role_dropdown.dart';
+import 'package:depenses_app/core/l10n/gen/s.dart';
+import '../widgets/role_dropdown.dart';
+import '../services/role_store.dart';
+import '../widgets/role_dropdown.dart';
+import '../models/user_roles.dart';
+import '../widgets/role_dropdown.dart';
+import '../services/role_store.dart';
+import '../widgets/role_dropdown.dart';
 import 'package:depenses_app/screens/new_expense_screen.dart';
 
+import '../widgets/role_dropdown.dart';
+import '../services/role_store.dart';
+import '../widgets/role_dropdown.dart';
+import '../models/user_roles.dart';
+import '../widgets/role_dropdown.dart';
+import '../services/role_store.dart';
+import '../widgets/role_dropdown.dart';
 class HomeScreen extends StatelessWidget {
   final String currentUserEmail;
   const HomeScreen({super.key, required this.currentUserEmail});
@@ -16,13 +45,13 @@ class HomeScreen extends StatelessWidget {
           Icon(Icons.receipt_long_rounded,
               size: 80, color: Theme.of(context).colorScheme.primary),
           const SizedBox(height: 12),
-          Text('Dépenses', style: Theme.of(context).textTheme.headlineMedium),
+          Text('D?penses', style: Theme.of(context).textTheme.headlineMedium),
           const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Text(
-              'Bienvenue dans votre application de gestion des dépenses.\n'
-                  'Vous pouvez créer une nouvelle réclamation ou consulter l’historique via la barre ci-dessous.',
+              'Bienvenue dans votre application de gestion des d?penses.\n'
+                  "Vous pouvez créer une nouvelle réclamation ou consulter lâ€™historique via la barre ci-dessous.",
               textAlign: TextAlign.center,
             ),
           ),
@@ -45,3 +74,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+
+
+

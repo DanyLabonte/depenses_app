@@ -9,7 +9,7 @@ class SFr extends S {
   SFr([String locale = 'fr']) : super(locale);
 
   @override
-  String get appTitle => 'Dépenses';
+  String get appTitle => 'D?penses';
 
   @override
   String get signInTitle => 'Connexion';
@@ -25,7 +25,7 @@ class SFr extends S {
 
   @override
   String get genericErrorMessage =>
-      'Réessaie plus tard ou contacte le support si le problème persiste.';
+      'R?essaie plus tard ou contacte le support si le probl?me persiste.';
 
   @override
   String get home => 'Accueil';
@@ -37,38 +37,38 @@ class SFr extends S {
   String get mail => 'Courriel';
 
   @override
-  String get newClaim => 'Nouvelle dépense';
+  String get newClaim => 'Nouvelle d?pense';
 
   @override
   String get sessionTotalTitle => 'Total de la session';
 
   @override
   String get sessionTotalSub =>
-      'Somme des dépenses depuis votre dernière connexion';
+      'Somme des d?penses depuis votre derni?re connexion';
 
   @override
   String get pendingBoxTitle => 'En attente';
 
   @override
-  String get pendingBoxSub => 'Dépenses soumises, en attente d’approbation';
+  String get pendingBoxSub => 'DÃƒÂ©penses soumises, en attente d\'approbation';
 
   @override
-  String get noPending => 'Aucune dépense en attente';
+  String get noPending => 'Aucune d?pense en attente';
 
   @override
-  String get category => 'Catégorie';
+  String get category => 'Cat?gorie';
 
   @override
-  String get subCategory => 'Sous-catégorie';
+  String get subCategory => 'Sous-cat?gorie';
 
   @override
-  String get qc99Title => 'QC99 - Service à la collectivité';
+  String get qc99Title => 'QC99 - Service ? la collectivit?';
 
   @override
   String get language => 'Langue';
 
   @override
-  String get french => 'Français';
+  String get french => 'Fran?ais';
 
   @override
   String get english => 'Anglais';
@@ -83,10 +83,10 @@ class SFr extends S {
   String get signInButton => 'Se connecter';
 
   @override
-  String get demoSectionTitle => 'Mode démo';
+  String get demoSectionTitle => 'Mode d?mo';
 
   @override
-  String get demoVolunteer => 'Bénévole SAC';
+  String get demoVolunteer => 'B?n?vole SAC';
 
   @override
   String get demoAdmin => 'Administration';
@@ -98,10 +98,10 @@ class SFr extends S {
   String get unknownError => 'Erreur inconnue';
 
   @override
-  String get signOut => 'Déconnexion';
+  String get signOut => 'D?connexion';
 
   @override
-  String get signOutConfirm => 'Voulez-vous vous déconnecter ?';
+  String get signOutConfirm => 'Voulez-vous vous d?connecter ?';
 
   @override
   String get cancel => 'Annuler';
@@ -113,10 +113,10 @@ class SFr extends S {
   String get amount => 'Montant';
 
   @override
-  String get theme => 'Thème';
+  String get theme => 'Th?me';
 
   @override
-  String get themeSystem => 'Système';
+  String get themeSystem => 'Syst?me';
 
   @override
   String get themeLight => 'Clair';
@@ -125,11 +125,11 @@ class SFr extends S {
   String get themeDark => 'Sombre';
 
   @override
-  String get forgotPasswordTitle => 'Mot de passe oublié';
+  String get forgotPasswordTitle => 'Mot de passe oubli?';
 
   @override
   String get forgotPasswordSubtitle =>
-      'Entre ton courriel et nous t’enverrons un lien pour réinitialiser ton mot de passe.';
+      'Entre ton courriel et nous t\'enverrons un lien pour rÃƒÂ©initialiser ton mot de passe.';
 
   @override
   String get emailLabel => 'Courriel';
@@ -147,67 +147,67 @@ class SFr extends S {
   String get sendReset => 'Envoyer le lien';
 
   @override
-  String get checkInboxTitle => 'Vérifie ta boîte de réception';
+  String get checkInboxTitle => 'V?rifie ta bo?te de r?ception';
 
   @override
   String checkInbox(Object email) {
-    return 'Un courriel a été envoyé à $email. Suis les instructions pour réinitialiser ton mot de passe.';
+    return 'Un courriel a ?t? envoy? ? $email. Suis les instructions pour r?initialiser ton mot de passe.';
   }
 
   @override
-  String get backToSignIn => 'Retour à la connexion';
+  String get backToSignIn => 'Retour ? la connexion';
 
   @override
-  String get forgotPasswordLink => 'Mot de passe oublié ?';
+  String get forgotPasswordLink => 'Mot de passe oubli? ?';
 
   @override
-  String get signUpTitle => 'Créer un compte';
+  String get signUpTitle => 'Cr?er un compte';
 
   @override
-  String get accountSelectTitle => 'Choisir la catégorie de compte';
+  String get accountSelectTitle => 'Choisir la cat?gorie de compte';
 
   @override
-  String get searchHint => 'Rechercher un code ou un libellé…';
+  String get searchHint => 'Rechercher un code ou un libell?.';
 
   @override
-  String get acc66100 => '66100 | Réunion divisionnaire';
+  String get acc66100 => '66100 | R?union divisionnaire';
 
   @override
-  String get acc66102 => '66102 | Souper de Noël divisionnaire';
+  String get acc66102 => '66102 | Souper de No?l divisionnaire';
 
   @override
   String get acc66104 => '66104 | Revue annuelle';
 
   @override
-  String get acc77100 => '77100 | Frais de déplacement';
+  String get acc77100 => '77100 | Frais de d?placement';
 
   @override
   String get acc77102 => '77102 | Repas';
 
   @override
   String get acc77105 =>
-      '77105 | Hébergement (Autorisation de la direction requise)';
+      '77105 | H?bergement (Autorisation de la direction requise)';
 
   @override
-  String get acc81100 => '81100 | Équipement';
+  String get acc81100 => '81100 | ?quipement';
 
   @override
-  String get acc81101 => '81101 | Matériel médical';
+  String get acc81101 => '81101 | Mat?riel m?dical';
 
   @override
-  String get acc81102 => '81102 | Communications — Équipement';
+  String get acc81102 => '81102 | Communications - ?quipement';
 
   @override
   String get acc83100 => '83100 | Uniformes';
 
   @override
-  String get acc84101 => '84101 | Carburant véhicule de location';
+  String get acc84101 => '84101 | Carburant v?hicule de location';
 
   @override
-  String get acc84102 => '84102 | Entretien & réparation véhicules';
+  String get acc84102 => '84102 | Entretien & r?paration v?hicules';
 
   @override
-  String get acc84104 => '84104 | Autres véhicules';
+  String get acc84104 => '84104 | Autres v?hicules';
 
   @override
   String get acc99999 => '99999 | Autre';
@@ -216,16 +216,16 @@ class SFr extends S {
   String get passwordConfirmLabel => 'Confirmer le mot de passe';
 
   @override
-  String get passwordTooShort => 'Mot de passe trop court (6+ caractères)';
+  String get passwordTooShort => 'Mot de passe trop court (6+ caract?res)';
 
   @override
   String get passwordMismatch => 'Les mots de passe ne correspondent pas';
 
   @override
-  String get roleLabel => 'Rôle';
+  String get roleLabel => 'R?le';
 
   @override
-  String get roleVolunteer => 'Bénévole Service à la collectivité';
+  String get roleVolunteer => 'B?n?vole Service ? la collectivit?';
 
   @override
   String get roleFinance => 'Responsable finance';
@@ -235,24 +235,25 @@ class SFr extends S {
 
   @override
   String get roleApprovalNote =>
-      'Une approbation par un administrateur est requise pour ce rôle.';
+      'Une approbation par un administrateur est requise pour ce r?le.';
 
   @override
-  String get agreeTerms => 'J’accepte les conditions';
+  String get agreeTerms =>
+      'J\'accepte les conditions d\'utilisation de l\'application d\'Ambulance Saint-Jean';
 
   @override
   String get continueLabel => 'Continuer';
 
   @override
-  String get verificationTitle => 'Vérification du courriel';
+  String get verificationTitle => 'V?rification du courriel';
 
   @override
   String verificationSubtitle(Object email) {
-    return 'Un code a été envoyé à $email. Entre-le pour valider ton adresse.';
+    return 'Un code a ?t? envoy? ? $email. Entre-le pour valider ton adresse.';
   }
 
   @override
-  String get codeLabel => 'Code de vérification (6 chiffres)';
+  String get codeLabel => 'Code de v?rification (6 chiffres)';
 
   @override
   String get resendCode => 'Renvoyer le code';
@@ -265,7 +266,7 @@ class SFr extends S {
 
   @override
   String get approvalPendingBody =>
-      'Votre demande a été envoyée. Un administrateur doit approuver votre rôle.';
+      'Votre demande a ?t? envoy?e. Un administrateur doit approuver votre r?le.';
 
   @override
   String get ok => 'OK';
@@ -274,10 +275,10 @@ class SFr extends S {
   String get mustAcceptTerms => 'Vous devez accepter.';
 
   @override
-  String get profilePhotoUpdated => 'Photo mise à jour';
+  String get profilePhotoUpdated => 'Photo mise ? jour';
 
   @override
-  String get profilePhotoRemoved => 'Photo supprimée';
+  String get profilePhotoRemoved => 'Photo supprim?e';
 
   @override
   String get imageTooLarge =>
@@ -285,7 +286,7 @@ class SFr extends S {
 
   @override
   String get imageTooLargeCompressed =>
-      'Image compressée trop volumineuse (>300 Ko).';
+      'Image compress?e trop volumineuse (>300 Ko).';
 
   @override
   String get pickSource => 'Choisir une source';
@@ -294,7 +295,7 @@ class SFr extends S {
   String get gallery => 'Galerie';
 
   @override
-  String get camera => 'Caméra';
+  String get camera => 'Cam?ra';
 
   @override
   String get removePhoto => 'Retirer la photo';
@@ -311,7 +312,7 @@ class SFr extends S {
 
   @override
   String get webPhotoTip =>
-      'Astuce : sur le Web, les photos sont stockées en local (navigateur).';
+      'Astuce : sur le Web, les photos sont stock?es en local (navigateur).';
 
   @override
   String get suggestionOpenMailButton => 'Ouvrir mon client courriel';
@@ -332,7 +333,7 @@ class SFr extends S {
   String get filterStatus => 'Statut';
 
   @override
-  String get filterYear => 'Année';
+  String get filterYear => 'Ann?e';
 
   @override
   String get filterAll => 'Tous';
@@ -341,28 +342,28 @@ class SFr extends S {
   String get filterAllYears => 'Toutes';
 
   @override
-  String get historyEmpty => 'Aucune réclamation pour ces filtres.';
+  String get historyEmpty => 'Aucune r?clamation pour ces filtres.';
 
   @override
-  String get statusPending => 'En attente d’approbation';
+  String get statusPending => 'En attente d\'approbation';
 
   @override
-  String get statusApproved => 'Approuvé';
+  String get statusApproved => 'Approuv?';
 
   @override
-  String get statusApprovedLvl1 => 'Approuvé (Niv. 1)';
+  String get statusApprovedLvl1 => 'Approuv? (Niv. 1)';
 
   @override
-  String get statusApprovedFinal => 'Approuvé (Final)';
+  String get statusApprovedFinal => 'Approuv? (Final)';
 
   @override
-  String get statusRejected => 'Refusé';
+  String get statusRejected => 'Refus?';
 
   @override
   String get fromLabel => 'De';
 
   @override
-  String get toLabel => 'À';
+  String get toLabel => '?';
 
   @override
   String get subjectLabel => 'Sujet';
@@ -374,17 +375,17 @@ class SFr extends S {
   String get sendLabel => 'Envoyer';
 
   @override
-  String get feedbackSent => 'Suggestion envoyée. Merci !';
+  String get feedbackSent => 'Suggestion envoy?e. Merci !';
 
   @override
-  String get feedbackFooter => 'Envoyé par';
+  String get feedbackFooter => 'Envoy? par';
 
   @override
-  String get homeHeroTitle => 'Dépenses';
+  String get homeHeroTitle => 'D?penses';
 
   @override
   String get homeHeroSubtitle =>
-      'Bienvenue dans votre application de gestion des dépenses.\nVous pouvez créer une nouvelle réclamation ou consulter l’historique via la barre ci-dessous.';
+      'Bienvenue dans votre application de gestion des dÃƒÂ©penses.\nVous pouvez crÃƒÂ©er une nouvelle rÃƒÂ©clamation ou consulter l\'historique via la barre ci-dessous.';
 
   @override
   String get profileName => 'Nom';
@@ -396,18 +397,18 @@ class SFr extends S {
   String get profileDivision => 'Division';
 
   @override
-  String get profileJoinDate => 'Date d’adhésion';
+  String get profileJoinDate => 'Date d\'adhÃƒÂ©sion';
 
   @override
   String get profileLanguage => 'Langue';
 
   @override
-  String get profileTheme => 'Thème';
+  String get profileTheme => 'Th?me';
 
   @override
   String get profileRemovePhoto => 'Retirer la photo';
 
   @override
   String get profilePhotoTipWeb =>
-      'Astuce : sur le Web, les photos sont stockées en local (navigateur).';
+      'Astuce : sur le Web, les photos sont stock?es en local (navigateur).';
 }

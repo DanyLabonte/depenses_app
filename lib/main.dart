@@ -1,14 +1,38 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
+import 'services/role_store.dart';
+import 'models/user_roles.dart';
+import 'services/role_store.dart';
 import 'package:flutter/gestures.dart' show PointerDeviceKind;
+import 'services/role_store.dart';
+import 'models/user_roles.dart';
+import 'services/role_store.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'package:depenses_app/l10n/s.dart';
-import 'package:depenses_app/l10n/locale_controller.dart';
-import 'package:depenses_app/theme/theme_controller.dart';
-import 'package:depenses_app/screens/app_shell.dart';
-import 'package:depenses_app/screens/sign_in_screen.dart';
+import 'services/role_store.dart';
+import 'models/user_roles.dart';
+import 'services/role_store.dart';
+import 'core/l10n/gen/s.dart';
+import 'services/role_store.dart';
+import 'models/user_roles.dart';
+import 'services/role_store.dart';
+import 'core/l10n/locale_controller.dart';
+import 'services/role_store.dart';
+import 'models/user_roles.dart';
+import 'services/role_store.dart';
+import 'core/theme/theme_controller.dart';
+import 'services/role_store.dart';
+import 'models/user_roles.dart';
+import 'services/role_store.dart';
+import 'screens/app_shell.dart';
+import 'services/role_store.dart';
+import 'models/user_roles.dart';
+import 'services/role_store.dart';
+import 'screens/sign_in_screen.dart';
 
+import 'services/role_store.dart';
+import 'models/user_roles.dart';
+import 'services/role_store.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await LocaleController.instance.init();
@@ -19,12 +43,12 @@ Future<void> main() async {
 class AppScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
-    PointerDeviceKind.touch,
-    PointerDeviceKind.mouse,
-    PointerDeviceKind.trackpad,
-    PointerDeviceKind.stylus,
-    PointerDeviceKind.unknown,
-  };
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+        PointerDeviceKind.stylus,
+        PointerDeviceKind.unknown,
+      };
 }
 
 class DepensesApp extends StatelessWidget {
@@ -32,7 +56,7 @@ class DepensesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double kTopBannerHeight = 96; // ≈ 1 pouces
+    const double kTopBannerHeight = 96; // â‰ˆ 1 pouce
     const Color kTopBannerColor = Color(0xFF04834A);
 
     return AnimatedBuilder(
@@ -46,7 +70,8 @@ class DepensesApp extends StatelessWidget {
           scrollBehavior: AppScrollBehavior(),
           onGenerateTitle: (ctx) => S.of(ctx).appTitle,
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1565C0)),
+            colorScheme:
+                ColorScheme.fromSeed(seedColor: const Color(0xFF1565C0)),
             useMaterial3: true,
           ),
           darkTheme: ThemeData(
@@ -105,7 +130,8 @@ class _UnknownRoute extends StatelessWidget {
           label: Text(s.goHome),
           onPressed: () => Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (_) => const AppShell(currentUserEmail: '')),
+            MaterialPageRoute(
+                builder: (_) => const AppShell(currentUserEmail: '')),
           ),
         ),
       ),

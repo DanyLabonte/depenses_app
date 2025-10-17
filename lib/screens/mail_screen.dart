@@ -1,3 +1,4 @@
+import 'package:depenses_app/core/l10n/gen/s.dart';
 import 'package:flutter/material.dart';
 import '../l10n/s.dart';
 
@@ -13,8 +14,9 @@ class MailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(s.mail)),
       body: Center(
-        child: Text('Commentaire / feedback — utilisateur : $currentUserEmail'),
+        child: Text('Commentaire / feedback Ã¢â‚¬â€ utilisateur : $currentUserEmail'),
       ),
     );
   }
 }
+

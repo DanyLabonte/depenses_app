@@ -1,7 +1,7 @@
 // lib/models/expense.dart
 import 'dart:io';
 
-/// Statut d'une réclamation
+/// Statut dÃ¢â‚¬â„¢une rÃ¯Â¿Â½clamation
 enum ExpenseStatus { pending, approvedLvl1, approvedFinal, rejected }
 
 extension ExpenseStatusLabel on ExpenseStatus {
@@ -10,19 +10,19 @@ extension ExpenseStatusLabel on ExpenseStatus {
       case ExpenseStatus.pending:
         return 'En attente';
       case ExpenseStatus.approvedLvl1:
-        return 'Approuvée N1';
+        return 'Approuv?e N1';
       case ExpenseStatus.approvedFinal:
-        return 'Approuvée finale';
+        return 'Approuv?e finale';
       case ExpenseStatus.rejected:
-        return 'Refusée';
+        return 'Refus?e';
     }
   }
 }
 
-/// Types d'événements du journal
+/// Types d'?v?nements du journal
 enum AuditType { created, approved_lvl1, approved_final, rejected }
 
-/// Événement d'audit (historique)
+/// ?v?nement dÃ¢â‚¬â„¢audit (historique)
 class AuditEvent {
   final AuditType type;
   final DateTime at;
@@ -37,7 +37,7 @@ class AuditEvent {
   });
 }
 
-/// Modèle principal d'une dépense
+/// Mod?le principal dÃ¢â‚¬â„¢une d?pense
 class Expense {
   final String id;
   final String category;
@@ -46,23 +46,23 @@ class Expense {
   final String merchant;
   final String description;
 
-  /// Pièces jointes en mémoire (facultatif)
+  /// Pi?ces jointes en m?moire (facultatif)
   final List<File> attachments;
 
-  /// Chemins/URI des pièces jointes (utilisé par l'UI et l'API mock)
+  /// Chemins/URI des pi?ces jointes (utilis? par lÃ¢â‚¬â„¢UI et lÃ¢â‚¬â„¢API mock)
   final List<String> attachmentUris;
 
-  /// Métadonnées de création
+  /// M?tadonn?es de cr?ation
   final DateTime createdAt;
   final String createdBy;
 
   /// Statut courant
   ExpenseStatus status;
 
-  /// Journal complet (création, approbations, refus)
+  /// Journal complet (cr?ation, approbations, refus)
   List<AuditEvent> journal;
 
-  // Champs d’approbation (remplis quand approuvé)
+  // Champs dÃ¢â‚¬â„¢approbation (remplis quand approuv?)
   String? approvedByLvl1;
   DateTime? approvedAtLvl1;
 
@@ -92,7 +92,7 @@ class Expense {
     this.rejectionReason,
   }) : journal = journal ?? <AuditEvent>[];
 
-  /// Copie immuable et ciblée
+  /// Copie immuable et cibl?e
   Expense copyWith({
     String? id,
     String? category,
@@ -133,3 +133,5 @@ class Expense {
     );
   }
 }
+
+

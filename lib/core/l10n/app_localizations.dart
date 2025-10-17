@@ -1,3 +1,4 @@
+import 'package:depenses_app/core/l10n/gen/s.dart';
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
@@ -13,8 +14,8 @@ import 'app_localizations_fr.dart';
 /// Callers can lookup localized strings with an instance of AppLocalizations
 /// returned by `AppLocalizations.of(context)`.
 ///
-/// Applications need to include `AppLocalizations.delegate()` in their app's
-/// `localizationDelegates` list, and the locales they support in the app's
+/// Applications need to include `AppLocalizations.delegate()` in their appÃ¢â‚¬â„¢s
+/// `localizationDelegates` list, and the locales they support in the appÃ¢â‚¬â„¢s
 /// `supportedLocales` list. For example:
 ///
 /// ```dart
@@ -46,12 +47,12 @@ import 'app_localizations_fr.dart';
 ///
 /// iOS applications define key application metadata, including supported
 /// locales, in an Info.plist file that is built into the application bundle.
-/// To configure the locales supported by your app, you’ll need to edit this
+/// To configure the locales supported by your app, youÃ¢â‚¬â„¢ll need to edit this
 /// file.
 ///
-/// First, open your project’s ios/Runner.xcworkspace Xcode workspace file.
+/// First, open your projectÃ¢â‚¬â„¢s ios/Runner.xcworkspace Xcode workspace file.
 /// Then, in the Project Navigator, open the Info.plist file under the Runner
-/// project’s Runner folder.
+/// projectÃ¢â‚¬â„¢s Runner folder.
 ///
 /// Next, select the Information Property List item, select Add Item from the
 /// Editor menu, then select Localizations from the pop-up menu.
@@ -89,7 +90,7 @@ abstract class AppLocalizations {
     GlobalWidgetsLocalizations.delegate,
   ];
 
-  /// A list of this localizations delegate's supported locales.
+  /// A list of this localizations delegateÃ¢â‚¬â„¢s supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
     Locale('fr')
@@ -247,3 +248,4 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
     'that was used.'
   );
 }
+

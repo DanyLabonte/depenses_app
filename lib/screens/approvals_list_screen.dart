@@ -1,20 +1,34 @@
 // lib/screens/approvals_list_screen.dart
 import 'package:flutter/material.dart';
+import '../widgets/role_dropdown.dart';
+import '../services/role_store.dart';
+import '../widgets/role_dropdown.dart';
+import '../models/user_roles.dart';
+import '../widgets/role_dropdown.dart';
+import '../services/role_store.dart';
+import '../widgets/role_dropdown.dart';
 import '../services/auth_service.dart';
 
-/// Écran pour la liste des demandes de rôle « Chef divisionnaire »
-/// Affiché uniquement pour les administrateurs.
+import '../widgets/role_dropdown.dart';
+import '../services/role_store.dart';
+import '../widgets/role_dropdown.dart';
+import '../models/user_roles.dart';
+import '../widgets/role_dropdown.dart';
+import '../services/role_store.dart';
+import '../widgets/role_dropdown.dart';
+/// ?cran pour la liste des demandes de r?le ? Chef divisionnaire ?
+/// Affich? uniquement pour les administrateurs.
 class ApprovalsListScreen extends StatelessWidget {
   static const route = '/approvals';
   const ApprovalsListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final auth = AuthService(); // Service unique en mémoire
+    final auth = AuthService(); // Service unique en m?moire
     final reqs = auth.pendingRoleRequests;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Demandes de rôle')),
+      appBar: AppBar(actions: const [RoleDropdown()], title: const Text('Demandes de r?le')),
       body: reqs.isEmpty
           ? const Center(
         child: Text(
@@ -28,14 +42,14 @@ class ApprovalsListScreen extends StatelessWidget {
         separatorBuilder: (_, __) => const SizedBox(height: 8),
         itemBuilder: (context, index) {
           final r = reqs[index];
-          final name = r['name'] ?? ''; // si présent
+          final name = r['name'] ?? ''; // si pr?sent
           final email = r['email'] ?? '';
           final role = r['requestedRole'] ?? 'Chef divisionnaire';
 
           return Card(
             child: ListTile(
               title: Text(name.isEmpty ? email : name),
-              subtitle: Text('$email — $role'),
+              subtitle: Text('$email - $role'),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -45,7 +59,7 @@ class ApprovalsListScreen extends StatelessWidget {
                       (context as Element).markNeedsBuild();
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text('Demande refusée'),
+                          content: Text('Demande refus?e'),
                         ),
                       );
                     },
@@ -59,7 +73,7 @@ class ApprovalsListScreen extends StatelessWidget {
                       (context as Element).markNeedsBuild();
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text('Demande approuvée'),
+                          content: Text('Demande approuv?e'),
                         ),
                       );
                     },
@@ -75,3 +89,5 @@ class ApprovalsListScreen extends StatelessWidget {
     );
   }
 }
+
+

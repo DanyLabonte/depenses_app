@@ -2,14 +2,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-/// Modèle de notification
+/// Mod?le de notification
 class NotificationMessage {
   final String to;            // email ou id utilisateur
   final String title;
   final String body;
   final NotificationChannel channel;
   final NotificationPriority priority;
-  final String? dedupeKey;    // pour déduplication/throttle
+  final String? dedupeKey;    // pour d?duplication/throttle
   final Map<String, dynamic>? data;
 
   const NotificationMessage({
@@ -50,25 +50,25 @@ class NotificationMessage {
 enum NotificationChannel { system, approval, security, reminder }
 enum NotificationPriority { low, normal, high, urgent }
 
-/// Signature d’un “sink” (= destination de notification)
+/// Signature dÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢un "sink" (= destination de notification)
 typedef NotificationSink = FutureOr<void> Function(NotificationMessage msg);
 
-/// Service centralisé — extensible (console, SnackBar, FCM/APNs, etc.)
+/// Service centralis? - extensible (console, SnackBar, FCM/APNs, etc.)
 class NotificationService {
   NotificationService._();
   static final NotificationService _i = NotificationService._();
   factory NotificationService() => _i;
 
-  // Sinks enregistrés (console par défaut)
+  // Sinks enregistr?s (console par d?faut)
   final List<NotificationSink> _sinks = [_consoleSink];
 
   // Anti-spam simple: dedupeKey -> timestamp dernier envoi
   final Map<String, DateTime> _lastSent = {};
 
-  // Tâches planifiées
+  // T?ches planifi?es
   final Map<String, Timer> _scheduled = {}; // scheduleId -> Timer
 
-  /// Ajoute un sink (ex.: FCM, APNs, webhook…)
+  /// Ajoute un sink (ex.: FCM, APNs, webhook.)
   void addSink(NotificationSink sink) {
     if (!_sinks.contains(sink)) _sinks.add(sink);
   }
@@ -76,7 +76,7 @@ class NotificationService {
   /// Retire un sink
   void removeSink(NotificationSink sink) => _sinks.remove(sink);
 
-  /// Envoi direct (API rétro-compatible)
+  /// Envoi direct (API r?tro-compatible)
   static void send({
     required String to,
     required String title,
@@ -85,15 +85,15 @@ class NotificationService {
     NotificationService().sendMessage(NotificationMessage(to: to, title: title, body: body));
   }
 
-  /// Envoi avec options (canal, priorité, data, déduplication)
+  /// Envoi avec options (canal, priorit?, data, d?duplication)
   Future<void> sendMessage(NotificationMessage msg, {Duration throttle = const Duration(seconds: 5)}) async {
-    // Déduplication optionnelle par clé
+    // D?duplication optionnelle par cl?
     final key = msg.dedupeKey ??
         '${msg.to}|${msg.channel}|${msg.title.hashCode}|${msg.body.hashCode}';
     final now = DateTime.now();
     final last = _lastSent[key];
     if (last != null && now.difference(last) < throttle) {
-      // drop silencieux pour éviter le spam
+      // drop silencieux pour ?viter le spam
       return;
     }
     _lastSent[key] = now;
@@ -107,20 +107,20 @@ class NotificationService {
     }
   }
 
-  /// Envoi à plusieurs destinataires
+  /// Envoi ? plusieurs destinataires
   Future<void> sendToMany(List<String> recipients, NotificationMessage base, {Duration? throttle}) async {
     for (final r in recipients) {
       await sendMessage(base.copyWith(to: r), throttle: throttle ?? const Duration(seconds: 5));
     }
   }
 
-  /// “Topics” naïfs (résout une liste d’emails et envoie à chacun)
+  /// "Topics" na?fs (r?sout une liste dÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢emails et envoie ? chacun)
   Future<void> sendTopic(String topic, NotificationMessage base, List<String> Function(String topic) resolveEmails) async {
     final emails = resolveEmails(topic);
     await sendToMany(emails, base);
   }
 
-  /// Planifie une notification (retourne un id à utiliser pour annuler)
+  /// Planifie une notification (retourne un id ? utiliser pour annuler)
   String schedule(NotificationMessage msg, Duration delay, {String? scheduleId}) {
     final id = scheduleId ?? 'sched_${DateTime.now().microsecondsSinceEpoch}_${msg.hashCode}';
     cancel(id); // si existait
@@ -132,7 +132,7 @@ class NotificationService {
     return id;
   }
 
-  /// Annule une notification planifiée
+  /// Annule une notification planifi?e
   void cancel(String scheduleId) {
     _scheduled.remove(scheduleId)?.cancel();
   }
@@ -145,17 +145,17 @@ class NotificationService {
     _scheduled.clear();
   }
 
-  // ────────────────────────────────────────────────────────────────────────────
+  // ????????????????????????????????????????????????????????????????????????????
   // Sinks fournis
-  // ────────────────────────────────────────────────────────────────────────────
+  // ????????????????????????????????????????????????????????????????????????????
 
-  /// Sink console (toujours présent)
+  /// Sink console (toujours pr?sent)
   static Future<void> _consoleSink(NotificationMessage msg) async {
     // ignore: avoid_print
-    print('[NOTIFY] to=${msg.to} | ${msg.title} — ${msg.body}  (ch=${msg.channel}, prio=${msg.priority})');
+    print('[NOTIFY] to=${msg.to} | ${msg.title} - ${msg.body}  (ch=${msg.channel}, prio=${msg.priority})');
   }
 
-  /// Sink SnackBar (in-app). A appeler une fois au démarrage avec un GlobalKey<ScaffoldMessengerState>.
+  /// Sink SnackBar (in-app). A appeler une fois au d?marrage avec un GlobalKey<ScaffoldMessengerState>.
   NotificationSink snackBarSinkWith(GlobalKey<ScaffoldMessengerState> messengerKey) {
     return (NotificationMessage msg) {
       final ctx = messengerKey.currentContext;
@@ -179,9 +179,9 @@ class NotificationService {
     };
   }
 
-  // ────────────────────────────────────────────────────────────────────────────
+  // ????????????????????????????????????????????????????????????????????????????
   // Templates courants (facultatifs)
-  // ────────────────────────────────────────────────────────────────────────────
+  // ????????????????????????????????????????????????????????????????????????????
 
   Future<void> notifyApprovalLevel1({
     required String requesterEmail,
@@ -192,8 +192,8 @@ class NotificationService {
     await sendMessage(
       NotificationMessage(
         to: requesterEmail,
-        title: 'Réclamation #$expenseId approuvée (N1)',
-        body: 'Par $approverName — ${amount.toStringAsFixed(2)} \$',
+        title: 'rÃƒÂ©clamation #$expenseId approuv?e (N1)',
+        body: 'Par $approverName - ${amount.toStringAsFixed(2)} \$',
         channel: NotificationChannel.approval,
         priority: NotificationPriority.normal,
         dedupeKey: 'apprL1:$expenseId:$requesterEmail',
@@ -211,8 +211,8 @@ class NotificationService {
     await sendMessage(
       NotificationMessage(
         to: requesterEmail,
-        title: 'Réclamation #$expenseId approuvée (finale)',
-        body: 'Par $approverName — ${amount.toStringAsFixed(2)} \$',
+        title: 'rÃƒÂ©clamation #$expenseId approuv?e (finale)',
+        body: 'Par $approverName - ${amount.toStringAsFixed(2)} \$',
         channel: NotificationChannel.approval,
         priority: NotificationPriority.high,
         dedupeKey: 'apprFinal:$expenseId:$requesterEmail',
@@ -230,8 +230,8 @@ class NotificationService {
     await sendMessage(
       NotificationMessage(
         to: requesterEmail,
-        title: 'Réclamation #$expenseId refusée',
-        body: 'Par $approverName — Motif: $reason',
+        title: 'rÃƒÂ©clamation #$expenseId refus?e',
+        body: 'Par $approverName - Motif: $reason',
         channel: NotificationChannel.approval,
         priority: NotificationPriority.normal,
         dedupeKey: 'reject:$expenseId:$requesterEmail',
@@ -247,10 +247,10 @@ class NotificationService {
     await sendMessage(
       NotificationMessage(
         to: email,
-        title: daysLeft <= 0 ? 'Changement de mot de passe requis' : 'Pensez à changer votre mot de passe',
+        title: daysLeft <= 0 ? 'Changement de mot de passe requis' : 'Pensez ? changer votre mot de passe',
         body: daysLeft <= 0
-            ? 'Votre mot de passe doit être mis à jour avant de continuer.'
-            : 'Il vous reste $daysLeft jour(s) avant l’échéance.',
+            ? 'Votre mot de passe doit ?tre mis ? jour avant de continuer.'
+            : 'Il vous reste $daysLeft jour(s) avant l'?ch?ance.',
         channel: NotificationChannel.security,
         priority: daysLeft <= 0 ? NotificationPriority.urgent : NotificationPriority.normal,
         dedupeKey: 'pwdRotation:$email',
@@ -274,3 +274,5 @@ class NotificationService {
     );
   }
 }
+
+

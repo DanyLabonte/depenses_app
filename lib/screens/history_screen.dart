@@ -1,6 +1,7 @@
+import 'package:depenses_app/core/l10n/gen/s.dart';
 // lib/screens/history_screen.dart
 import 'package:flutter/material.dart';
-import 'package:depenses_app/l10n/s.dart';
+import 'package:depenses_app/core/l10n/gen/s.dart';
 import 'package:depenses_app/models/expense.dart';
 import 'package:depenses_app/services/api_service.dart';
 
@@ -26,7 +27,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
   }
 
   Future<List<Expense>> _tryLoadFromApi() async {
-    // Invocation DYNAMIQUE pour ne pas casser la compilation si la méthode n’existe pas
+    // Invocation DYNAMIQUE pour ne pas casser la compilation si la m?thode nÃ¢â‚¬â„¢existe pas
     final dynamic api = _api;
 
     // 1) fetchExpensesForUser(email)
@@ -47,7 +48,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
       if (r is List<Expense>) return r;
     } catch (_) {}
 
-    throw StateError('Aucune méthode API disponible.');
+    throw StateError('Aucune m?thode API disponible.');
   }
 
   Future<List<Expense>> _load() async {
@@ -55,16 +56,16 @@ class _HistoryScreenState extends State<HistoryScreen> {
       final items = await _tryLoadFromApi();
       return items;
     } catch (_) {
-      // MODE DÉMO – liste locale pour voir l’apparence immédiatement
+      // MODE D?MO - liste locale pour voir lÃ¢â‚¬â„¢apparence imm?diatement
       final now = DateTime.now();
       return <Expense>[
         Expense(
           id: '1001',
-          category: '77100 | Frais de déplacement',
+          category: '77100 | Frais de d?placement',
           amount: 45.50,
           date: now.subtract(const Duration(days: 5)),
-          merchant: 'Taxi Québec',
-          description: 'Déplacement Québec',
+          merchant: 'Taxi Qu?bec',
+          description: 'D?placement Qu?bec',
           attachments: const [],
           attachmentUris: const [],
           createdAt: now.subtract(const Duration(days: 5)),
@@ -74,11 +75,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
         ),
         Expense(
           id: '1002',
-          category: '77105 | Hébergement',
+          category: '77105 | H?bergement',
           amount: 120.00,
           date: DateTime(now.year - 1, 11, 3),
-          merchant: 'Hôtel Laurier',
-          description: 'Hébergement',
+          merchant: 'H?tel Laurier',
+          description: 'H?bergement',
           attachments: const [],
           attachmentUris: const [],
           createdAt: DateTime(now.year - 1, 11, 3),
@@ -122,13 +123,13 @@ class _HistoryScreenState extends State<HistoryScreen> {
     final l = S.of(context);
     switch (s) {
       case ExpenseStatus.pending:
-        return l.statusPending;                // “En attente d’approbation”
+        return l.statusPending;                // "En attente dÃ¢â‚¬â„¢approbation"
       case ExpenseStatus.rejected:
-        return l.statusRejected;               // “Refusé”
+        return l.statusRejected;               // "Refus?"
       case ExpenseStatus.approvedLvl1:
-        return '${l.statusApproved} (Niv. 1)'; // “Approuvé (Niv. 1)”
+        return '${l.statusApproved} (Niv. 1)'; // "Approuv? (Niv. 1)"
       case ExpenseStatus.approvedFinal:
-        return '${l.statusApproved} (Final)';  // “Approuvé (Final)”
+        return '${l.statusApproved} (Final)';  // "Approuv? (Final)"
     }
   }
 
@@ -145,7 +146,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
   }
 
   String _titleFor(Expense e) {
-    // Dérive un titre lisible pour la tuile
+    // D?rive un titre lisible pour la tuile
     if (e.description.trim().isNotEmpty) return e.description;
     if (e.merchant.trim().isNotEmpty) return e.merchant;
     return e.category;
@@ -182,12 +183,12 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       isExpanded: true,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.filter_list),
-                        labelText: s.filterStatus, // “Statut”
+                        labelText: s.filterStatus, // "Statut"
                       ),
                       items: [
                         DropdownMenuItem(
                           value: null,
-                          child: Text(s.filterAll), // “Tous”
+                          child: Text(s.filterAll), // "Tous"
                         ),
                         DropdownMenuItem(
                           value: ExpenseStatus.pending,
@@ -210,19 +211,19 @@ class _HistoryScreenState extends State<HistoryScreen> {
                     ),
                   ),
                   const SizedBox(width: 24),
-                  // Année
+                  // Ann?e
                   Expanded(
                     child: DropdownButtonFormField<int?>(
                       value: _yearFilter,
                       isExpanded: true,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.calendar_today),
-                        labelText: s.filterYear, // “Année”
+                        labelText: s.filterYear, // "Ann?e"
                       ),
                       items: [
                         DropdownMenuItem(
                           value: null,
-                          child: Text(s.filterAllYears), // “Toutes”
+                          child: Text(s.filterAllYears), // "Toutes"
                         ),
                         for (final y in years)
                           DropdownMenuItem(
@@ -241,7 +242,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 Expanded(
                   child: Center(
                     child: Text(
-                      s.historyEmpty, // “Aucune réclamation pour ces filtres.”
+                      s.historyEmpty, // "Aucune rÃ¯Â¿Â½clamation pour ces filtres."
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
@@ -258,7 +259,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                         leading: const Icon(Icons.receipt_long),
                         title: Text(_titleFor(e)),
                         subtitle: Text(
-                          '${e.category} • '
+                          '${e.category} . '
                               '${date.day.toString().padLeft(2, '0')}-'
                               '${date.month.toString().padLeft(2, '0')}-'
                               '${date.year}',
@@ -277,7 +278,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                           ],
                         ),
                         onTap: () {
-                          // Quand votre écran de détail sera prêt :
+                          // Quand votre ?cran de d?tail sera pr?t :
                           // Navigator.push(context, MaterialPageRoute(
                           //   builder: (_) => ApprovalDetailScreen(expense: e),
                           // ));
@@ -293,3 +294,6 @@ class _HistoryScreenState extends State<HistoryScreen> {
     );
   }
 }
+
+
+

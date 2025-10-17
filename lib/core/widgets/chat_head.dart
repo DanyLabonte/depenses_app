@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:depenses_app/services/chat_badge.dart';
 
-/// Petite bulle flottante "messagerie" déplaçable façon Messenger.
-/// - Appuie: déclenche onTap
-/// - Drag: on peut la déplacer librement à l’écran
+/// Petite bulle flottante "messagerie" d?pla?able fa?on Messenger.
+/// - Appuie: d?clenche onTap
+/// - Drag: on peut la d?placer librement ? l'?cran
 /// - Affiche un badge non-lu via ChatBadge.unread
 class ChatHead extends StatefulWidget {
   final VoidCallback onTap;
@@ -35,7 +35,7 @@ class _ChatHeadState extends State<ChatHead> {
     // marge pour ne pas passer sous la barre du bas
     final bottomSafe = padding.bottom + 72;
 
-    // borne l’offset pour rester visible
+    // borne lÃ¢â‚¬â„¢offset pour rester visible
     Offset _clamp(Offset o) {
       final dx = o.dx.clamp(8.0, size.width - 68.0);
       final dy = o.dy.clamp(padding.top + 8.0, size.height - bottomSafe);
@@ -97,3 +97,5 @@ class _ChatHeadState extends State<ChatHead> {
     );
   }
 }
+
+

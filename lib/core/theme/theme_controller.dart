@@ -37,3 +37,4 @@ class ThemeController extends ChangeNotifier {
     await prefs.setString(_kKey, str);
   }
 }
+
