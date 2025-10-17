@@ -1,5 +1,6 @@
+import 'package:depenses_app/core/l10n/gen/s.dart';
 import 'package:flutter/material.dart';
-import 'package:depenses_app/l10n/s.dart';
+import 'package:depenses_app/core/l10n/gen/s.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -26,7 +27,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       _sending = true;
     });
 
-    // Simule un appel réseau
+    // Simule un appel rÃƒÂ©seau
     await Future.delayed(const Duration(seconds: 1));
 
     setState(() {
@@ -170,3 +171,6 @@ class _SuccessView extends StatelessWidget {
     );
   }
 }
+
+
+

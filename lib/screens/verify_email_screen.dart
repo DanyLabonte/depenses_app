@@ -1,8 +1,9 @@
+import 'package:depenses_app/core/l10n/gen/s.dart';
 // lib/screens/verify_email_screen.dart
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-import 'package:depenses_app/l10n/s.dart';
+import 'package:depenses_app/core/l10n/gen/s.dart';
 import 'package:depenses_app/models/user_role.dart';
 import 'package:depenses_app/services/auth_service.dart';
 
@@ -11,7 +12,7 @@ class VerifyEmailScreen extends StatefulWidget {
   final String email;
   final String password;
   final List<UserRole> roles;
-  final String? divisionCode; // AJOUT: division sélectionnée à l'inscription
+  final String? divisionCode; // AJOUT: division s?lectionn?e ? lÃ¢â‚¬â„¢inscription
 
   const VerifyEmailScreen({
     super.key,
@@ -61,7 +62,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
       await AuthService().sendVerificationCode(widget.email);
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Code renvoyé.')),
+        const SnackBar(content: Text('Code renvoy?.')),
       );
       _startCooldown(30);
     } catch (e) {
@@ -83,7 +84,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
 
     setState(() => _loading = true);
     try {
-      // 1) Vérifier le code envoyé à l'email
+      // 1) V?rifier le code envoy? ? lÃ¢â‚¬â„¢email
       final ok = await AuthService().verifyEmailCode(
         widget.email,
         _codeCtrl.text.trim(),
@@ -96,7 +97,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
         return;
       }
 
-      // 2) Enregistrer le compte avec MULTI RÔLES + division
+      // 2) Enregistrer le compte avec MULTI R?LES + division
       final needsApproval = await AuthService().registerWithRoles(
         name: widget.name,
         email: widget.email,
@@ -110,13 +111,13 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
         SnackBar(
           content: Text(
             needsApproval
-                ? 'Compte créé. Approbation requise pour certains rôles.'
-                : 'Compte créé et actif.',
+                ? 'Compte cr??. Approbation requise pour certains r?les.'
+                : 'Compte cr?? et actif.',
           ),
         ),
       );
 
-      // Retour à l'écran racine (ex: SignIn)
+      // Retour ? l'?cran racine (ex: SignIn)
       Navigator.of(context).popUntil((r) => r.isFirst);
     } catch (e) {
       if (!mounted) return;
@@ -156,14 +157,14 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
 
                 const SizedBox(height: 12),
 
-                // Rôles choisis (affichage)
+                // R?les choisis (affichage)
                 Wrap(
                   spacing: 8,
                   runSpacing: 8,
                   children: widget.roles
                       .map(
                         (r) => const Chip(
-                      label: Text('Rôle sélectionné'),
+                      label: Text('R?le s?lectionn?'),
                       avatar: Icon(Icons.verified_user, size: 18),
                     ),
                   )
@@ -200,3 +201,6 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
     );
   }
 }
+
+
+

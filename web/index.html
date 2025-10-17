@@ -1,4 +1,5 @@
-<!DOCTYPE html><html><head>
+﻿<!DOCTYPE html><html lang="fr"><head>
+  <meta http-equiv="Cache-Control" content="no-store, max-age=0">
   <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
@@ -14,7 +15,7 @@
   -->
   <base href="$FLUTTER_BASE_HREF">
 
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="A new Flutter project.">
 
@@ -101,6 +102,16 @@
     }
   </script>
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<script>
+if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
+    if (window.caches && caches.keys) {
+      caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
+    }
+  }
+}
+</script>
 </head>
 <body>
   <picture id="splash">

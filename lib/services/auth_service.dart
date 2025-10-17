@@ -9,12 +9,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:depenses_app/models/user_role.dart';
 
-/// Service d’authentification/stockage local (POC)
-/// - Comptes persistés (SharedPreferences JSON)
-/// - Vérification d’email par code (6 chiffres / 15 min)
-/// - Inscription avec MULTI rôles + stockage division + date d’adhésion
-/// - Historique des demandes de rôles (pending/approved/rejected)
-/// - Notif “finance” simulée
+/// Service dÃ¢â‚¬â„¢authentification/stockage local (POC)
+/// - Comptes persist?s (SharedPreferences JSON)
+/// - V?rification dÃ¢â‚¬â„¢email par code (6 chiffres / 15 min)
+/// - Inscription avec MULTI r?les + stockage division + date dÃ¢â‚¬â„¢adhÃ¯Â¿Â½sion
+/// - Historique des demandes de r?les (pending/approved/rejected)
+/// - Notif "finance" simul?e
 class AuthService {
   // ---------------- Singleton ----------------
   static final AuthService _instance = AuthService._();
@@ -28,11 +28,11 @@ class AuthService {
   static const _kRejected = 'role_rejected';
   static const _kSeeded = 'auth_seeded_v2';
 
-  // Vérif email (simu) – non utilisés directement ici mais conservés pour compat
+  // V?rif email (simu) - non utilis?s directement ici mais conserv?s pour compat
   static const _kVerifyCodeValue = 'verify.code.value';
   static const _kVerifyCodeEmail = 'verify.code.email';
 
-  // Division & date d’adhésion (par email)
+  // Division & date dÃ¢â‚¬â„¢adhÃ¯Â¿Â½sion (par email)
   static const _kUserDivisionCode = 'user.division.code';
   static const _kUserJoinDate = 'user.join.date';
 
@@ -40,30 +40,30 @@ class AuthService {
   static const _kCurrentUser = 'auth_current_user';
 
   // ---------------- In-memory ----------------
-  /// Utilisateurs persistés (liste de maps normalisés)
+  /// Utilisateurs persist?s (liste de maps normalis?s)
   /// user schema:
   /// {
   ///   'name': String,
   ///   'email': String (lowercase),
   ///   'passwordHash': String (sha256),
-  ///   'role': String,                 // compat: rôle principal (hist.)
-  ///   'roles': List<String>,          // multi-rôles (labels)
+  ///   'role': String,                 // compat: r?le principal (hist.)
+  ///   'roles': List<String>,          // multi-r?les (labels)
   ///   'approved': bool,
   ///   'lastPasswordChange': String (ISO8601),
-  ///   'passwordHistory': List<String> (sha256, plus récent en tête)
+  ///   'passwordHistory': List<String> (sha256, plus r?cent en t?te)
   /// }
   final List<Map<String, dynamic>> _users = [];
 
-  /// Demandes de rôle
+  /// Demandes de r?le
   final List<Map<String, String>> _pendingRoleRequests = [];
   final List<Map<String, String>> _approvedRoleRequests = [];
-  final List<Map<String, String>> _rejectedRoleRequests = []; // {… , reason}
+  final List<Map<String, String>> _rejectedRoleRequests = []; // {. , reason}
 
-  /// Tickets "mot de passe oublié" (mémoire uniquement)
+  /// Tickets "mot de passe oubli?" (m?moire uniquement)
   /// resetId -> { email, code, expiresAt }
   final Map<String, Map<String, dynamic>> _resetTickets = {};
 
-  /// Codes de vérification email (mémoire, durée 15 min)
+  /// Codes de v?rification email (m?moire, dur?e 15 min)
   /// email -> { code, expiresAt }
   final Map<String, Map<String, dynamic>> _emailVerifyCodes = {};
 
@@ -132,7 +132,7 @@ class AuthService {
     return null;
   }
 
-  // ====== Seed comptes de démo =======
+  // ====== Seed comptes de d?mo =======
   Future<void> ensureSeed() async {
     final p = await SharedPreferences.getInstance();
     final already = p.getBool(_kSeeded) ?? false;
@@ -144,7 +144,7 @@ class AuthService {
 
     _users.addAll([
       {
-        'name': 'Admin Démo',
+        'name': 'Admin D?mo',
         'email': 'admin@sja.ca',
         'passwordHash': adminHash,
         'role': 'Administrateur',
@@ -155,11 +155,11 @@ class AuthService {
         'passwordHistory': <String>[adminHash],
       },
       {
-        'name': 'Benevole Démo',
+        'name': 'Benevole D?mo',
         'email': 'user@example.com',
         'passwordHash': userHash,
-        'role': 'Bénévole SAC',
-        'roles': <String>['Bénévole SAC'],
+        'role': 'B?n?vole SAC',
+        'roles': <String>['B?n?vole SAC'],
         'approved': true,
         'lastPasswordChange':
         DateTime.now().subtract(const Duration(days: 10)).toIso8601String(),
@@ -178,7 +178,7 @@ class AuthService {
     await p.setBool(_kSeeded, true);
   }
 
-  // ===== Vérification email (simu)
+  // ===== V?rification email (simu)
   Future<void> sendVerificationCode(String email) async {
     final e = _norm(email);
     final rand = Random.secure();
@@ -189,7 +189,7 @@ class AuthService {
       'expiresAt': expiresAt.toIso8601String(),
     };
     debugPrint(
-        '[AuthService] Code envoyé à $email => $code (expire $expiresAt)');
+        '[AuthService] Code envoy? ? $email => $code (expire $expiresAt)');
     await Future.delayed(const Duration(milliseconds: 120));
   }
 
@@ -209,7 +209,7 @@ class AuthService {
     return ok;
   }
 
-  /// Validation de base de l’email (+ duplication locale)
+  /// Validation de base de lÃ¢â‚¬â„¢email (+ duplication locale)
   Future<String?> validateEmail(String email) async {
     final e = _norm(email);
 
@@ -226,14 +226,14 @@ class AuthService {
       '10minutemail.com'
     };
     final domain = e.split('@').last;
-    if (disposable.contains(domain)) return 'Adresse jetable non autorisée.';
+    if (disposable.contains(domain)) return 'Adresse jetable non autoris?e.';
 
     await _loadAll();
-    if (_findUser(e) != null) return 'Cette adresse est déjà utilisée.';
+    if (_findUser(e) != null) return 'Cette adresse est d?j? utilis?e.';
     return null;
   }
 
-  // ===== Division & Date d’adhésion (stockage local par email)
+  // ===== Division & Date dÃ¢â‚¬â„¢adhÃ¯Â¿Â½sion (stockage local par email)
   Future<void> setUserDivision(String email, String? divisionCode) async {
     final p = await SharedPreferences.getInstance();
     await p.setString('$_kUserDivisionCode:${_norm(email)}', divisionCode ?? '');
@@ -259,7 +259,7 @@ class AuthService {
     return DateTime.tryParse(raw);
   }
 
-  // ===== Inscription / rôles
+  // ===== Inscription / r?les
   Future<bool> register({
     required String name,
     required String email,
@@ -269,7 +269,7 @@ class AuthService {
     await _loadAll();
     final e = _norm(email);
     if (_findUser(e) != null) {
-      throw Exception('Un compte existe déjà pour cet email.');
+      throw Exception('Un compte existe d?j? pour cet email.');
     }
 
     final approved = !role.requiresApproval;
@@ -301,7 +301,7 @@ class AuthService {
     return !approved; // true => en attente / false => actif
   }
 
-  /// Inscription avec MULTI rôles + division (utilisée par VerifyEmailScreen)
+  /// Inscription avec MULTI r?les + division (utilis?e par VerifyEmailScreen)
   Future<bool> registerWithRoles({
     required String name,
     required String email,
@@ -309,11 +309,11 @@ class AuthService {
     required List<UserRole> roles,
     String? divisionCode,
   }) async {
-    if (roles.isEmpty) throw Exception('Aucun rôle fourni.');
+    if (roles.isEmpty) throw Exception('Aucun r?le fourni.');
     await _loadAll();
     final e = _norm(email);
     if (_findUser(e) != null) {
-      throw Exception('Un compte existe déjà pour cet email.');
+      throw Exception('Un compte existe d?j? pour cet email.');
     }
 
     final now = DateTime.now();
@@ -347,7 +347,7 @@ class AuthService {
 
     await _saveAll();
 
-    // On garde les infos saisies à l'inscription
+    // On garde les infos saisies ? lÃ¢â‚¬â„¢inscription
     await setUserDivision(email, divisionCode);
     await setUserJoinDate(email, DateTime.now());
 
@@ -375,7 +375,7 @@ class AuthService {
     };
   }
 
-  // ===== Connexion / Déconnexion
+  // ===== Connexion / D?connexion
   Future<Map<String, dynamic>> signIn({
     required String email,
     required String password,
@@ -396,19 +396,19 @@ class AuthService {
     await _loadAll();
     final e = _norm(email);
     final u = _findUser(e);
-    if (u == null) throw Exception('Aucun compte trouvé pour $email.');
+    if (u == null) throw Exception('Aucun compte trouv? pour $email.');
     final p = await SharedPreferences.getInstance();
     await p.setString(_kCurrentUser, e);
     return u;
   }
 
-  /// Déconnexion (POC) : on efface juste l’utilisateur courant
+  /// D?connexion (POC) : on efface juste lÃ¢â‚¬â„¢utilisateur courant
   Future<void> signOut() async {
     final p = await SharedPreferences.getInstance();
     await p.remove(_kCurrentUser);
   }
 
-  /// Suppression de compte (POC) : supprime l'utilisateur + prefs associées
+  /// Suppression de compte (POC) : supprime lÃ¢â‚¬â„¢utilisateur + prefs associ?es
   Future<void> deleteAccount(String email) async {
     await _loadAll();
     final e = _norm(email);
@@ -477,7 +477,7 @@ class AuthService {
       throw Exception('Mot de passe actuel incorrect.');
     }
     if (_isReused(u, newPassword)) {
-      throw Exception('Vous ne pouvez pas réutiliser vos 5 derniers mots de passe.');
+      throw Exception('Vous ne pouvez pas r?utiliser vos 5 derniers mots de passe.');
     }
 
     final oldHash = (u['passwordHash'] ?? '') as String;
@@ -495,12 +495,12 @@ class AuthService {
     await _saveAll();
   }
 
-  // ===== Mot de passe oublié
+  // ===== Mot de passe oubli?
   Future<PasswordResetResponse> requestPasswordReset(String email) async {
     await _loadAll();
     final e = _norm(email);
     final u = _findUser(e);
-    if (u == null) throw Exception('Aucun compte trouvé pour ce courriel.');
+    if (u == null) throw Exception('Aucun compte trouv? pour ce courriel.');
 
     final rand = Random.secure();
     final code = List.generate(6, (_) => rand.nextInt(10)).join();
@@ -527,12 +527,12 @@ class AuthService {
     await _loadAll();
     final t = _resetTickets[resetId];
     if (t == null) {
-      throw Exception('Lien/identifiant de réinitialisation invalide.');
+      throw Exception('Lien/identifiant de r?initialisation invalide.');
     }
     final expires = _parseDate(t['expiresAt']);
     if (expires == null || DateTime.now().isAfter(expires)) {
       _resetTickets.remove(resetId);
-      throw Exception('Le code a expiré. Merci de refaire une demande.');
+      throw Exception('Le code a expir?. Merci de refaire une demande.');
     }
     if ((t['code'] ?? '') != code.trim()) {
       throw Exception('Code invalide.');
@@ -543,7 +543,7 @@ class AuthService {
     if (u == null) throw Exception('Compte introuvable.');
 
     if (_isReused(u, newPassword)) {
-      throw Exception('Vous ne pouvez pas réutiliser vos 5 derniers mots de passe.');
+      throw Exception('Vous ne pouvez pas r?utiliser vos 5 derniers mots de passe.');
     }
 
     final oldHash = (u['passwordHash'] ?? '') as String;
@@ -562,7 +562,7 @@ class AuthService {
     await _saveAll();
   }
 
-  // ===== API Rôles (compat UI)
+  // ===== API R?les (compat UI)
   List<Map<String, String>> get pendingRoleRequests =>
       List<Map<String, String>>.from(_pendingRoleRequests);
 
@@ -580,7 +580,7 @@ class AuthService {
 
   void approveChef(String email) => approveRoleRequest(email);
 
-  void rejectChef(String email, {String reason = 'Refusé par administrateur'}) =>
+  void rejectChef(String email, {String reason = 'Refus? par administrateur'}) =>
       rejectRoleRequest(email, reason: reason);
 
   void approveRoleRequest(String email) {
@@ -594,7 +594,7 @@ class AuthService {
     }
   }
 
-  void rejectRoleRequest(String email, {String reason = 'Refusé'}) {
+  void rejectRoleRequest(String email, {String reason = 'Refus?'}) {
     final e = _norm(email);
     final idx =
     _pendingRoleRequests.indexWhere((r) => _norm(r['email'] ?? '') == e);
@@ -605,19 +605,19 @@ class AuthService {
     }
   }
 
-  // --------------- Utils rôles ---------------
+  // --------------- Utils r?les ---------------
   String _roleLabel(UserRole role) {
     switch (role) {
       case UserRole.volunteer:
-        return 'Bénévole SAC';
+        return 'B?n?vole SAC';
       case UserRole.finance:
         return 'Responsable finance';
       case UserRole.admin:
         return 'Administrateur';
       case UserRole.operations:
-        return 'Opérations';
+        return 'Op?rations';
       case UserRole.expenses:
-        return 'Dépenses';
+        return 'D?penses';
     }
   }
 
@@ -625,9 +625,9 @@ class AuthService {
     final l = label.trim().toLowerCase();
     if (l.contains('finance')) return UserRole.finance;
     if (l.contains('admin')) return UserRole.admin;
-    if (l.contains('opération')) return UserRole.operations;
+    if (l.contains('op?ration')) return UserRole.operations;
     if (l.contains('operation')) return UserRole.operations;
-    if (l.contains('dépense') || l.contains('depense')) return UserRole.expenses;
+    if (l.contains('d?pense') || l.contains('depense')) return UserRole.expenses;
     return UserRole.volunteer;
   }
 
@@ -659,13 +659,13 @@ class AuthService {
   }) async {
     final finance = await getFinanceEmails();
     for (final f in finance) {
-      debugPrint('🔔 [PUSH MOCK] To=$f | Nouvelle dépense de $createdBy '
+      debugPrint('?? [PUSH MOCK] To=$f | Nouvelle d?pense de $createdBy '
           '(${amount.toStringAsFixed(2)} \$) dans "$category"');
     }
   }
 }
 
-// ===== Modèles auxiliaires exposés à l’UI ===================================
+// ===== Mod?les auxiliaires expos?s ? lÃ¢â‚¬â„¢UI ===================================
 
 class _UserProfile {
   final String email;
@@ -688,8 +688,10 @@ class RotationInfo {
         required this.lastChangeStr});
 }
 
-/// Réponse de création de ticket de réinitialisation de mot de passe.
+/// R?ponse de cr?ation de ticket de r?initialisation de mot de passe.
 class PasswordResetResponse {
   final String resetId;
   PasswordResetResponse(this.resetId);
 }
+
+

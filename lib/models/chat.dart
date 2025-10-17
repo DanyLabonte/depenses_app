@@ -19,9 +19,9 @@ extension ChatTargetLabel on ChatTarget {
 @immutable
 class ChatMessage {
   final String id;
-  final String fromEmail;           // expéditeur réel
-  final bool fromAgent;             // true = “côté admin/finance”, false = bénévole
-  final ChatTarget target;          // à quel groupe s’adresse le message
+  final String fromEmail;           // exp?diteur r?el
+  final bool fromAgent;             // true = "c?t? admin/finance", false = b?n?vole
+  final ChatTarget target;          // ? quel groupe sÃ¢â‚¬â„¢adresse le message
   final String text;
   final DateTime sentAt;
   final bool read;
@@ -46,3 +46,5 @@ class ChatMessage {
     read: read ?? this.read,
   );
 }
+
+

@@ -19,7 +19,7 @@ class TimelineScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Journal de la réclamation'),
+        title: const Text('Journal de la rÃƒÂ©clamation'),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 12),
@@ -30,11 +30,11 @@ class TimelineScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          // Récapitulatif réclamation
+          // R?capitulatif rÃƒÂ©clamation
           Card(
             child: ListTile(
               leading: const Icon(Icons.receipt_long),
-              title: Text('${expense.category} • ${expense.amount.toStringAsFixed(2)} \$'),
+              title: Text('${expense.category} . ${expense.amount.toStringAsFixed(2)} \$'),
               subtitle: Text(
                 [
                   if (expense.merchant.toString().isNotEmpty) 'Marchand : ${expense.merchant}',
@@ -46,9 +46,9 @@ class TimelineScreen extends StatelessWidget {
           ),
           const SizedBox(height: 12),
 
-          // Pièces jointes (si présentes)
+          // Pi?ces jointes (si pr?sentes)
           if (expense.attachmentUris.isNotEmpty) ...[
-            const Text('Pièces jointes', style: TextStyle(fontWeight: FontWeight.w600)),
+            const Text('Pi?ces jointes', style: TextStyle(fontWeight: FontWeight.w600)),
             const SizedBox(height: 8),
             Wrap(
               spacing: 8,
@@ -104,7 +104,7 @@ class TimelineScreen extends StatelessWidget {
                     ),
                     title: Text(meta.label),
                     subtitle: Text([
-                      '$when — par ${a.actor}',
+                      '$when - par ${a.actor}',
                       if (note.isNotEmpty) 'Note : $note',
                     ].join('\n')),
                     isThreeLine: note.isNotEmpty,
@@ -127,18 +127,18 @@ class TimelineScreen extends StatelessWidget {
   _AuditMeta _auditMeta(AuditType t) {
     switch (t) {
       case AuditType.created:
-        return const _AuditMeta('Créée', Icons.fiber_new, Colors.blueGrey);
+        return const _AuditMeta('Cr??e', Icons.fiber_new, Colors.blueGrey);
       case AuditType.approved_lvl1:
-        return const _AuditMeta('Approuvée N1', Icons.verified_outlined, Colors.indigo);
+        return const _AuditMeta('Approuv?e N1', Icons.verified_outlined, Colors.indigo);
       case AuditType.approved_final:
-        return const _AuditMeta('Approuvée finale', Icons.verified, Colors.green);
+        return const _AuditMeta('Approuv?e finale', Icons.verified, Colors.green);
       case AuditType.rejected:
-        return const _AuditMeta('Refusée', Icons.block, Colors.red);
+        return const _AuditMeta('Refus?e', Icons.block, Colors.red);
     }
   }
 }
 
-/// Petit chip de statut, couleurs cohérentes avec l’historique
+/// Petit chip de statut, couleurs coh?rentes avec lÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢historique
 class _StatusChip extends StatelessWidget {
   final ExpenseStatus status;
   const _StatusChip({required this.status});
@@ -196,10 +196,10 @@ class _EmptyState extends StatelessWidget {
         children: [
           const Icon(Icons.inbox_outlined, size: 40, color: Colors.black45),
           const SizedBox(height: 8),
-          const Text('Aucun événement pour le moment', style: TextStyle(fontWeight: FontWeight.w600)),
+          const Text('Aucun ?v?nement pour le moment', style: TextStyle(fontWeight: FontWeight.w600)),
           const SizedBox(height: 4),
           Text(
-            'La réclamation a été créée le ${dateShort.format(DateTime.now())}. Les validations apparaîtront ici.',
+            'La rÃƒÂ©clamation a ?t? cr??e le ${dateShort.format(DateTime.now())}. Les validations appara?tront ici.',
             textAlign: TextAlign.center,
             style: const TextStyle(color: Colors.black54),
           ),
@@ -208,3 +208,5 @@ class _EmptyState extends StatelessWidget {
     );
   }
 }
+
+

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:depenses_app/l10n/s.dart';
+import 'package:depenses_app/core/l10n/gen/s.dart';
+
 import 'package:depenses_app/screens/home_screen.dart';
 import 'package:depenses_app/screens/history_screen.dart';
 import 'package:depenses_app/screens/feedback_screen.dart';
 import 'package:depenses_app/screens/profile_screen.dart';
 import 'package:depenses_app/services/auth_service.dart';
+
+import '../widgets/role_dropdown.dart';
+import '../services/role_store.dart';
+import '../models/user_roles.dart';
+import 'package:depenses_app/screens/sign_in_screen.dart';
 
 class AppShell extends StatefulWidget {
   final String currentUserEmail;
@@ -39,7 +45,7 @@ class _AppShellState extends State<AppShell> {
         title = s.appTitle;
     }
 
-    final pages = [
+    final pages = <Widget>[
       HomeScreen(currentUserEmail: widget.currentUserEmail),
       HistoryScreen(currentUserEmail: widget.currentUserEmail),
       FeedbackScreen(currentUserEmail: widget.currentUserEmail),
@@ -47,62 +53,37 @@ class _AppShellState extends State<AppShell> {
     ];
 
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar( 
         title: Text(title),
-        actions: [
-          IconButton(
-            tooltip: s.signOut,
-            icon: const Icon(Icons.logout_rounded),
-            onPressed: () async {
-              final ok = await showDialog<bool>(
-                context: context,
-                builder: (c) => AlertDialog(
-                  title: Text(s.signOut),
-                  content: Text(s.signOutConfirm),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(c, false),
-                      child: Text(s.cancel),
-                    ),
-                    FilledButton(
-                      onPressed: () => Navigator.pop(c, true),
-                      child: Text(s.confirm),
-                    ),
-                  ],
-                ),
-              );
-              if (ok == true) {
-                await AuthService().signOut();
-                if (!mounted) return;
-                Navigator.of(context).pop(); // retour à l’écran précédent (connexion)
-              }
-            },
-          ),
-        ],
+        
       ),
+
+      // Affiche la page sélectionnée
       body: pages[_index],
+
+      // Barre de navigation du bas
       bottomNavigationBar: NavigationBar(
         selectedIndex: _index,
         onDestinationSelected: (i) => setState(() => _index = i),
         destinations: [
           NavigationDestination(
-            icon: const Icon(Icons.home_rounded),
-            selectedIcon: const Icon(Icons.home_filled),
+            icon: const Icon(Icons.home_outlined),
+            selectedIcon: const Icon(Icons.home),
             label: s.homeTitle,
           ),
           NavigationDestination(
-            icon: const Icon(Icons.history_toggle_off_rounded),
-            selectedIcon: const Icon(Icons.history_rounded),
+            icon: const Icon(Icons.history_outlined),
+            selectedIcon: const Icon(Icons.history),
             label: s.historyTitle,
           ),
           NavigationDestination(
-            icon: const Icon(Icons.mail_outline_rounded),
-            selectedIcon: const Icon(Icons.mail_rounded),
+            icon: const Icon(Icons.lightbulb_outline),
+            selectedIcon: const Icon(Icons.lightbulb),
             label: s.suggestionTitle,
           ),
           NavigationDestination(
-            icon: const Icon(Icons.person_outline_rounded),
-            selectedIcon: const Icon(Icons.person_rounded),
+            icon: const Icon(Icons.person_outline),
+            selectedIcon: const Icon(Icons.person),
             label: s.profileTitle,
           ),
         ],
@@ -110,3 +91,5 @@ class _AppShellState extends State<AppShell> {
     );
   }
 }
+
+

@@ -93,8 +93,8 @@ abstract class S {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
-    Locale('fr'),
-    Locale('en')
+    Locale('en'),
+    Locale('fr')
   ];
 
   /// No description provided for @appTitle.
@@ -334,7 +334,7 @@ abstract class S {
   /// No description provided for @forgotPasswordSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Enter your email and we’ll send you a link to reset your password.'**
+  /// **'Enter your email and weÃ¢â‚¬â„¢ll send you a link to reset your password.'**
   String get forgotPasswordSubtitle;
 
   /// No description provided for @emailLabel.
@@ -406,7 +406,7 @@ abstract class S {
   /// No description provided for @searchHint.
   ///
   /// In en, this message translates to:
-  /// **'Search code or label…'**
+  /// **'Search code or labelÃ¢â‚¬Â¦'**
   String get searchHint;
 
   /// No description provided for @acc66100.
@@ -538,7 +538,7 @@ abstract class S {
   /// No description provided for @roleApprovalNote.
   ///
   /// In en, this message translates to:
-  /// **'An administrator’s approval is required for this role.'**
+  /// **'An administratorÃ¢â‚¬â„¢s approval is required for this role.'**
   String get roleApprovalNote;
 
   /// No description provided for @agreeTerms.

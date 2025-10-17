@@ -25,7 +25,7 @@ class ApprovalDetailScreen extends StatelessWidget {
       leading: Icon(ok ? Icons.verified_rounded : Icons.hourglass_empty_rounded),
       title: Text(title),
       subtitle: Text(
-        ok ? 'Par: $by • Le: ${_fmt(at)}' : 'En attente',
+        ok ? 'Par: $by . Le: ${_fmt(at)}' : 'En attente',
       ),
     );
   }
@@ -50,7 +50,7 @@ class ApprovalDetailScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Détails d’approbation')),
+      appBar: AppBar(title: const Text('D?tails dÃ¢â‚¬â„¢approbation')),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -67,23 +67,23 @@ class ApprovalDetailScreen extends StatelessWidget {
               leading: const Icon(Icons.receipt_long_rounded),
               title: Text(expense.category),
               subtitle: Text(expense.description.isEmpty
-                  ? '—'
+                  ? '-'
                   : expense.description),
             ),
           ),
           const SizedBox(height: 8),
 
-          // Création
+          // Cr?ation
           Card(
             child: ListTile(
               leading: const Icon(Icons.person_rounded),
-              title: Text('Créé par: ${expense.createdBy}'),
+              title: Text('Cr?? par: ${expense.createdBy}'),
               subtitle: Text('Le: ${_fmt(expense.createdAt)}'),
             ),
           ),
           const SizedBox(height: 8),
 
-          // Niveaux d’approbation
+          // Niveaux dÃ¢â‚¬â„¢approbation
           Card(
             child: Column(
               children: [
@@ -132,7 +132,7 @@ class ApprovalDetailScreen extends StatelessWidget {
                         leading: const Icon(Icons.fiber_manual_record, size: 16),
                         title: Text(_label(ev.type)),
                         subtitle: Text(
-                          'Par: ${ev.actor} • Le: ${_fmt(ev.at)}'
+                          'Par: ${ev.actor} . Le: ${_fmt(ev.at)}'
                               '${(ev.note ?? '').isNotEmpty ? '\nNote: ${ev.note}' : ''}',
                         ),
                         dense: true,
@@ -150,13 +150,15 @@ class ApprovalDetailScreen extends StatelessWidget {
   String _label(AuditType t) {
     switch (t) {
       case AuditType.created:
-        return 'Création';
+        return 'Cr?ation';
       case AuditType.approved_lvl1:
-        return 'Approuvée N1';
+        return 'Approuv?e N1';
       case AuditType.approved_final:
-        return 'Approuvée finale';
+        return 'Approuv?e finale';
       case AuditType.rejected:
-        return 'Refusée';
+        return 'Refus?e';
     }
   }
 }
+
+

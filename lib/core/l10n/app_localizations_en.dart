@@ -68,3 +68,4 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get lightMode => 'Light mode';
 }
+

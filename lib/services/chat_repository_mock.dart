@@ -4,17 +4,17 @@ import '../models/chat.dart';
 import 'chat_repository.dart';
 import 'chat_badge.dart';
 
-/// Démo locale (en mémoire) : simule un agent qui répond.
-/// À remplacer par une vraie implémentation réseau plus tard.
+/// D?mo locale (en m?moire) : simule un agent qui r?pond.
+/// ? remplacer par une vraie impl?mentation r?seau plus tard.
 class ChatRepositoryMock implements ChatRepository {
-  // Un contrôleur par cible, alimenté en mémoire
+  // Un contr?leur par cible, aliment? en m?moire
   final Map<ChatTarget, StreamController<List<ChatMessage>>> _controllers = {
     ChatTarget.admins: StreamController<List<ChatMessage>>.broadcast(),
     ChatTarget.finance: StreamController<List<ChatMessage>>.broadcast(),
     ChatTarget.adminsAndFinance: StreamController<List<ChatMessage>>.broadcast(),
   };
 
-  // Messages en mémoire par cible
+  // Messages en m?moire par cible
   final Map<ChatTarget, List<ChatMessage>> _store = {
     ChatTarget.admins: [],
     ChatTarget.finance: [],
@@ -25,20 +25,20 @@ class ChatRepositoryMock implements ChatRepository {
   String _nextId() => '${DateTime.now().millisecondsSinceEpoch}_${_seq++}';
 
   ChatRepositoryMock({String? seedEmail}) {
-    // Message d’accueil pour chaque cible (comme si l’agent saluait)
+    // Message dÃ¢â‚¬â„¢accueil pour chaque cible (comme si lÃ¢â‚¬â„¢agent saluait)
     for (final t in _store.keys) {
       final m = ChatMessage(
         id: _nextId(),
         fromEmail: 'agent@sja.ca',
         fromAgent: true,
         target: t,
-        text: 'Bonjour! Écrivez-nous dans ${t.label}.',
+        text: 'Bonjour! ?crivez-nous dans ${t.label}.',
         sentAt: DateTime.now(),
       );
       _store[t] = [m];
       _controllers[t]!.add(List.unmodifiable(_store[t]!));
 
-      // On simule un message entrant = incrément du badge
+      // On simule un message entrant = incr?ment du badge
       ChatBadge.unread.value++;
     }
   }
@@ -67,27 +67,27 @@ class ChatRepositoryMock implements ChatRepository {
     _store[target]!.add(userMsg);
     _controllers[target]!.add(List.unmodifiable(_store[target]!));
 
-    // Simule une réponse “agent” après 1,2 s
+    // Simule une r?ponse "agent" apr?s 1,2 s
     Future.delayed(const Duration(milliseconds: 1200), () {
       final reply = ChatMessage(
         id: _nextId(),
         fromEmail: 'agent@sja.ca',
         fromAgent: true,
         target: target,
-        text: 'Reçu ✔︎  • "${text.trim()}"',
+        text: 'Re?u ??  . "${text.trim()}"',
         sentAt: DateTime.now(),
       );
       _store[target]!.add(reply);
       _controllers[target]!.add(List.unmodifiable(_store[target]!));
 
-      // Incrémente badge sur arrivée d’un message agent
+      // Incr?mente badge sur arriv?e dÃ¢â‚¬â„¢un message agent
       ChatBadge.unread.value++;
     });
   }
 
   @override
   Future<void> markAllRead(ChatTarget target, String forUserEmail) async {
-    // Démo simple : on ne persiste pas l’état “read” par utilisateur ; on vide le badge.
+    // D?mo simple : on ne persiste pas l'?tat "read" par utilisateur ; on vide le badge.
     ChatBadge.unread.value = 0;
   }
 
@@ -98,3 +98,5 @@ class ChatRepositoryMock implements ChatRepository {
     }
   }
 }
+
+

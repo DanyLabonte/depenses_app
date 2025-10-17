@@ -1,25 +1,25 @@
 // lib/models/user_role.dart
 enum UserRole {
-  volunteer,   // Bénévole SAC
+  volunteer,   // B?n?vole SAC
   finance,     // Responsable finance
   admin,       // Administrateur
-  operations,  // Opérations
-  expenses,    // Dépenses
+  operations,  // Op?rations
+  expenses,    // D?penses
 }
 
 extension UserRoleLabel on UserRole {
   String get fr {
     switch (this) {
       case UserRole.volunteer:
-        return 'Bénévole SAC';
+        return 'B?n?vole SAC';
       case UserRole.finance:
         return 'Responsable finance';
       case UserRole.admin:
         return 'Administrateur';
       case UserRole.operations:
-        return 'Opérations';
+        return 'Op?rations';
       case UserRole.expenses:
-        return 'Dépenses';
+        return 'D?penses';
     }
   }
 
@@ -30,7 +30,7 @@ extension UserRoleLabel on UserRole {
       case UserRole.finance:
         return 'FINANCE';
       case UserRole.admin:
-        return 'ADMIN';
+        return 'ADMINISTRATEUR';
       case UserRole.operations:
         return 'OPERATIONS';
       case UserRole.expenses:
@@ -39,7 +39,7 @@ extension UserRoleLabel on UserRole {
   }
 }
 
-// ✅ extension utilisée par AuthService.register / registerWithRoles
+// ? extension utilis?e par AuthService.register / registerWithRoles
 extension UserRoleApproval on UserRole {
   bool get requiresApproval {
     switch (this) {
@@ -53,3 +53,5 @@ extension UserRoleApproval on UserRole {
     }
   }
 }
+
+

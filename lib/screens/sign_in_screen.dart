@@ -1,5 +1,6 @@
+import 'package:depenses_app/core/l10n/gen/s.dart';
 import 'package:flutter/material.dart';
-import 'package:depenses_app/l10n/s.dart';
+import 'package:depenses_app/core/l10n/gen/s.dart';
 import 'package:depenses_app/screens/app_shell.dart';
 import 'package:depenses_app/screens/sign_up_screen.dart';
 
@@ -29,7 +30,7 @@ class _SignInScreenState extends State<SignInScreen> {
     if (!(_formKey.currentState?.validate() ?? false)) return;
 
     setState(() => _loading = true);
-    // TODO: remplace par ta vraie logique d’authent (AuthService().signIn(...))
+    // TODO: remplace par ta vraie logique dÃ¢â‚¬â„¢authent (AuthService().signIn(...))
     await Future.delayed(const Duration(milliseconds: 500));
     setState(() => _loading = false);
 
@@ -145,7 +146,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             value: _rememberMe,
                             onChanged: (val) => setState(() => _rememberMe = val ?? false),
                           ),
-                          const Text('Rester connecté'),
+                          const Text('Rester connect?'),
                           const Spacer(),
                           TextButton(
                             onPressed: _onForgotPassword,
@@ -228,3 +229,6 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 }
+
+
+

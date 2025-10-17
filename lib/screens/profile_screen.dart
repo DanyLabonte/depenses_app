@@ -1,6 +1,8 @@
+import 'package:depenses_app/core/l10n/gen/s.dart';
 import 'package:flutter/material.dart';
-import 'package:depenses_app/l10n/s.dart';
+import 'package:depenses_app/core/l10n/gen/s.dart';
 import 'package:depenses_app/services/auth_service.dart';
+import 'package:depenses_app/screens/sign_in_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String currentUserEmail;
@@ -40,7 +42,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       builder: (c) => AlertDialog(
         title: const Text('Supprimer le compte'),
         content: const Text(
-          'Cette action est permanente et supprimera vos données locales (démo). Voulez-vous continuer ?',
+          'Cette action est permanente et supprimera vos donn?es locales (d?mo). Voulez-vous continuer ?',
         ),
         actions: [
           TextButton(onPressed: () => Navigator.pop(c, false), child: Text(s.cancel)),
@@ -54,7 +56,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       context: context,
       builder: (c) => AlertDialog(
         title: const Text('Confirmer'),
-        content: const Text('Tapez “SUPPRIMER” pour confirmer la suppression.'),
+        content: const Text('Tapez "SUPPRIMER" pour confirmer la suppression.'),
         actions: [
           TextButton(onPressed: () => Navigator.pop(c, false), child: Text(s.cancel)),
           FilledButton(
@@ -79,7 +81,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       child: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          // En-tête / avatar + nom
+          // En-t?te / avatar + nom
           Material(
             color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(.5),
             borderRadius: BorderRadius.circular(12),
@@ -115,8 +117,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   );
                   if (ok == true) {
                     await AuthService().signOut();
-                    if (!mounted) return;
-                    Navigator.of(context).pop();
+if (!mounted) return;
+Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+  MaterialPageRoute(builder: (_) => const SignInScreen()),
+  (route) => false,
+);
                   }
                 },
               ),
@@ -128,17 +133,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
           _RowInfo(
             icon: Icons.apartment_rounded,
             label: 'Division',
-            value: _division ?? '—',
+            value: _division ?? '-',
             locked: true,
           ),
           const SizedBox(height: 8),
 
-          // Date d'adhésion
+          // Date dâ€™adhï¿½sion
           _RowInfo(
             icon: Icons.event_available_rounded,
-            label: 'Date d’adhésion',
+            label: 'Date dâ€™adhï¿½sion',
             value: _joinDate == null
-                ? '—'
+                ? '-'
                 : '${_joinDate!.year}-${_joinDate!.month.toString().padLeft(2, '0')}-${_joinDate!.day.toString().padLeft(2, '0')}',
             locked: true,
           ),
@@ -152,33 +157,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
               labelText: 'Langue',
             ),
             items: const [
-              DropdownMenuItem(value: 'fr', child: Text('Français')),
+              DropdownMenuItem(value: 'fr', child: Text('Fran?ais')),
               DropdownMenuItem(value: 'en', child: Text('English')),
             ],
             onChanged: (_) {
-              // Ton mécanisme d’internationalisation réactif (si tu en as un)
+              // Ton m?canisme dâ€™internationalisation r?actif (si tu en as un)
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Changement de langue simulé (démo).')),
+                const SnackBar(content: Text('Changement de langue simul? (d?mo).')),
               );
             },
           ),
           const SizedBox(height: 12),
 
-          // Thème
+          // Th?me
           DropdownButtonFormField<String>(
             value: 'system',
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.color_lens_outlined),
-              labelText: 'Thème',
+              labelText: 'Th?me',
             ),
             items: const [
-              DropdownMenuItem(value: 'system', child: Text('Système')),
+              DropdownMenuItem(value: 'system', child: Text('Syst?me')),
               DropdownMenuItem(value: 'light', child: Text('Clair')),
               DropdownMenuItem(value: 'dark', child: Text('Sombre')),
             ],
             onChanged: (_) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Changement de thème simulé (démo).')),
+                const SnackBar(content: Text('Changement de th?me simul? (d?mo).')),
               );
             },
           ),
@@ -186,7 +191,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           const SizedBox(height: 24),
           Center(
             child: Text(
-              'Astuce : sur le Web, les photos sont stockées en local (navigateur).',
+              'Astuce : sur le Web, les photos sont stock?es en local (navigateur).',
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
@@ -233,3 +238,7 @@ class _RowInfo extends StatelessWidget {
     );
   }
 }
+
+
+
+

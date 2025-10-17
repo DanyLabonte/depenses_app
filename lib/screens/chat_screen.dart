@@ -97,7 +97,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     controller: _controller,
                     onSubmitted: (_) => _sendMessage(),
                     decoration: const InputDecoration(
-                      hintText: 'Écrire un message…',
+                      hintText: 'Ãƒâ€°crire un messageÃ¢â‚¬Â¦',
                       border: OutlineInputBorder(),
                       isDense: true,
                     ),
@@ -128,3 +128,4 @@ class _Message {
   final bool fromAgent;
   const _Message({required this.text, required this.fromAgent});
 }
+

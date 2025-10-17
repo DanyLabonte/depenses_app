@@ -43,3 +43,35 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# --- BEGIN auto-added (backups & generated) ---
+# Archives / backups
+*.zip
+*.bak
+*.bak_*
+*.backup-*.yaml
+*.bak-*
+*.bak_*.yaml
+encoding_backups*/
+encoding_backups_*/
+**/*.bak
+**/*.bak_*
+**/*.bak-*
+*.tmp
+
+# Flutter / tooling
+build/
+.dart_tool/
+.flutter-plugins*
+.packages
+.pub-cache/
+pubspec.lock
+
+# i18n généré
+lib/**/gen/
+lib/core/l10n/gen/
+lib/core/l10n/arb/
+
+# Images/essais locaux
+lib/models/img.png
+# --- END auto-added (backups & generated) ---

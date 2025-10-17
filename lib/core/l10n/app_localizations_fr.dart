@@ -9,7 +9,7 @@ class AppLocalizationsFr extends AppLocalizations {
   AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
-  String get appTitle => 'Dépenses';
+  String get appTitle => 'DÃƒÂ©penses';
 
   @override
   String get signInTitle => 'Connexion';
@@ -24,7 +24,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get genericErrorTitle => 'Une erreur est survenue.';
 
   @override
-  String get genericErrorMessage => 'Réessaie plus tard ou contacte le support si le problème persiste.';
+  String get genericErrorMessage => 'RÃƒÂ©essaie plus tard ou contacte le support si le problÃƒÂ¨me persiste.';
 
   @override
   String get loading => 'Chargement...';
@@ -48,16 +48,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get no => 'Non';
 
   @override
-  String get logout => 'Déconnexion';
+  String get logout => 'DÃƒÂ©connexion';
 
   @override
-  String get settings => 'Paramètres';
+  String get settings => 'ParamÃƒÂ¨tres';
 
   @override
   String get language => 'Langue';
 
   @override
-  String get french => 'Français';
+  String get french => 'FranÃƒÂ§ais';
 
   @override
   String get english => 'Anglais';
@@ -68,3 +68,5 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get lightMode => 'Mode clair';
 }
+
+

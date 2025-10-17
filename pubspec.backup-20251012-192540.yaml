@@ -1,5 +1,5 @@
 name: depenses_app
-description: Application de gestion des dépenses pour Ambulance Saint-Jean Québec
+description: Application de gestion des dÃƒÂ©penses pour Ambulance Saint-Jean QuÃƒÂ©bec
 publish_to: "none"
 version: 1.0.0+1
 
@@ -30,7 +30,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^4.0.0
 
-  # --- Optionnels (icône + splash screen) ---
+  # --- Optionnels (icÃƒÂ´ne + splash screen) ---
   flutter_launcher_icons: ^0.13.1
   flutter_native_splash: ^2.4.1
 
@@ -61,13 +61,13 @@ flutter:
   #         weight: 100
   #         style: italic
 
-  # --- Tes assets (si présents) ---
+  # --- Tes assets (si prÃƒÂ©sents) ---
   # assets:
   #   - assets/icon/
   #   - assets/splash/
   #   - assets/images/
 
-# --- Config pour l’icône de l’app ---
+# --- Config pour lÃ¢â‚¬â„¢icÃƒÂ´ne de lÃ¢â‚¬â„¢app ---
 flutter_launcher_icons:
   android: true
   ios: true
@@ -75,7 +75,7 @@ flutter_launcher_icons:
   adaptive_icon_background: "#FFFFFF"
   adaptive_icon_foreground: assets/icon/icon-foreground.png
 
-# --- Config pour l’écran de démarrage ---
+# --- Config pour lÃ¢â‚¬â„¢ÃƒÂ©cran de dÃƒÂ©marrage ---
 flutter_native_splash:
   color: "#FFFFFF"
   image: assets/splash/splash.png
